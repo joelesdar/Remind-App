@@ -1,69 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8892F7"
     tools:context=".RemindApp">
 
     <TextView
         android:id="@+id/AppTitle"
-        android:layout_width="205dp"
-        android:layout_height="63dp"
+        android:layout_width="210dp"
+        android:layout_height="89dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/pacifico"
+        android:shadowColor="#193822"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1"
         android:text="Remind"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/Secondary"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/IngresarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingresar"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Username"
-        app:layout_constraintVertical_bias="0.179" />
-
-    <EditText
-        android:id="@+id/Username"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="191dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="text"
-        android:singleLine="false"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AppTitle"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="104dp"
-        android:layout_height="95dp"
+        android:layout_width="137dp"
+        android:layout_height="128dp"
         android:src="@android:drawable/sym_def_app_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.323"
+        app:srcCompat="@drawable/Brain" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Secondary"
+        android:text="Ingresar"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="4px"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="484dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
