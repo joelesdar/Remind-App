@@ -2,7 +2,7 @@
     <string name="app_name">Remind-App</string>
 
     <!-- Checkout activity -->
-    <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="remind_app">Remind</string>
     <string name="checkout_item_description">Description</string>
     <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is
         not available on this phone.
