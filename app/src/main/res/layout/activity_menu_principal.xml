@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Primary"
+    tools:context=".MenuPrincipal">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@color/Complementary"
+        android:fontFamily="@font/pacifico"
+        android:text="Twins"
+        android:textColor="@color/Alert"
+        android:textSize="16sp"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="@dimen/buy_button_height"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@color/Complementary"
+        android:fontFamily="@font/pacifico"
+        android:textColor="@color/Alert"
+        android:textSize="16sp"
+        app:cornerRadius="@dimen/margin_large"
+        app:icon="@drawable/settings"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/Alert"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="4dp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="486dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@color/Complementary"
+        android:fontFamily="@font/pacifico"
+        android:text="Follow me"
+        android:textColor="@color/Alert"
+        android:textSize="16sp"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="4dp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@color/Complementary"
+        android:fontFamily="@font/pacifico"
+        android:textColor="@color/Alert"
+        android:textSize="16sp"
+        app:icon="@drawable/profile"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/Alert"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="4dp"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@color/Complementary"
+        android:fontFamily="@font/pacifico"
+        android:text="Picture"
+        android:textColor="@color/Alert"
+        android:textSize="16sp"
+        app:strokeColor="@color/Alert"
+        app:strokeWidth="4dp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/Brain"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:srcCompat="@drawable/Remind"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="652dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
