@@ -3,6 +3,7 @@ package com.example.twins;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 System.out.println("Iniciando Juego...");
+                iniciarJuego();
             }
         });
 
@@ -36,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Mostrar las instrucciones...");
             }
         });
-
         video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Mostrar Video Guía...");
             }
         });
+
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    private void iniciarJuego(){
+        Intent i = new Intent(this, Juego.class);
+        startActivity(i);
+    }
 }
