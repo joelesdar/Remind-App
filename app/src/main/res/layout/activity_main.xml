@@ -7,6 +7,20 @@
     android:background="@color/moradoApp"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/brainFondo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@mipmap/brainfondoverde"
+        android:alpha="0.15"
+        />
+
     <ImageButton
         android:id="@+id/botonMainAtras"
         style="?android:attr/borderlessButtonStyle"
@@ -19,8 +33,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/backverde"
-        tools:layout_editor_absoluteX="22dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="22dp" />
 
     <Button
         android:id="@+id/botonJugar"
@@ -136,5 +150,6 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
