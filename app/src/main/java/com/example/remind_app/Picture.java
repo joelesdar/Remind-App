@@ -21,16 +21,8 @@ public class Picture extends AppCompatActivity {
         setContentView(R.layout.activity_picture);
         getSupportActionBar().hide();
 
-//        jugar = findViewById(R.id.botonJugarPicture);
         instrucciones = findViewById(R.id.botonInstruccionesPicture);
         video = findViewById(R.id.botonVideoguiaPicture);
-
-//        jugar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println("Iniciando Juego...");
-//            }
-//        });
 
         instrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
