@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.remind_app.picture.pictureGameScreen;
+
 public class Picture extends AppCompatActivity {
 
     Button jugar, instrucciones, video;
@@ -19,17 +21,16 @@ public class Picture extends AppCompatActivity {
         setContentView(R.layout.activity_picture);
         getSupportActionBar().hide();
 
-        jugar = findViewById(R.id.botonJugarPicture);
+//        jugar = findViewById(R.id.botonJugarPicture);
         instrucciones = findViewById(R.id.botonInstruccionesPicture);
         video = findViewById(R.id.botonVideoguiaPicture);
-        atras = findViewById(R.id.botonMainAtras);
 
-        jugar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Iniciando Juego...");
-            }
-        });
+//        jugar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("Iniciando Juego...");
+//            }
+//        });
 
         instrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +53,11 @@ public class Picture extends AppCompatActivity {
     public void Regresar (View view) {
         Intent menu = new Intent (this, MenuPrincipal.class);
         startActivity(menu);
+    }
+
+    /** Ingresar al juego */
+    public void IngresoJuegoPicture (View view) {
+        Intent game = new Intent (this, pictureGameScreen.class);
+        startActivity(game);
     }
 }

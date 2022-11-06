@@ -44,6 +44,7 @@
         android:backgroundTintMode="add"
         android:fontFamily="@font/pacifico"
         android:includeFontPadding="false"
+        android:onClick="IngresoJuegoPicture"
         android:text="@string/botonJugar"
         android:textColor="@color/rosaApp"
         android:textSize="34sp"
