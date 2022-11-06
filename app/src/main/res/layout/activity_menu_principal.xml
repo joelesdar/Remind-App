@@ -16,10 +16,14 @@
         android:text="Twins"
         android:textColor="@color/Alert"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.017"
         app:strokeColor="@color/Alert"
-        app:strokeWidth="@dimen/buy_button_height"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="133dp" />
+        app:strokeWidth="@dimen/buy_button_height" />
 
     <Button
         android:id="@+id/button7"
@@ -33,10 +37,14 @@
         app:icon="@drawable/settings"
         app:iconGravity="textEnd"
         app:iconTint="@color/Alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.134"
         app:strokeColor="@color/Alert"
-        app:strokeWidth="4dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="486dp" />
+        app:strokeWidth="4dp" />
 
     <Button
         android:id="@+id/button6"
@@ -47,15 +55,20 @@
         android:text="Follow me"
         android:textColor="@color/Alert"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.064"
         app:strokeColor="@color/Alert"
-        app:strokeWidth="4dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="309dp" />
+        app:strokeWidth="4dp" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="144dp"
         android:layout_height="144dp"
+        android:layout_marginTop="4dp"
         android:background="@color/Complementary"
         android:fontFamily="@font/pacifico"
         android:textColor="@color/Alert"
@@ -63,10 +76,14 @@
         app:icon="@drawable/profile"
         app:iconGravity="textEnd"
         app:iconTint="@color/Alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintVertical_bias="0.052"
         app:strokeColor="@color/Alert"
-        app:strokeWidth="4dp"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="309dp" />
+        app:strokeWidth="4dp" />
 
     <Button
         android:id="@+id/button2"
@@ -74,28 +91,40 @@
         android:layout_height="144dp"
         android:background="@color/Complementary"
         android:fontFamily="@font/pacifico"
+        android:onClick="IngresoPicture"
         android:text="Picture"
         android:textColor="@color/Alert"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.017"
         app:strokeColor="@color/Alert"
-        app:strokeWidth="4dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="133dp" />
+        app:strokeWidth="4dp" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Brain"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="111dp"
+        android:layout_height="89dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036"
+        app:srcCompat="@drawable/brain" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        app:srcCompat="@drawable/Remind"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="652dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintVertical_bias="0.163"
+        app:srcCompat="@drawable/remindtitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
