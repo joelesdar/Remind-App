@@ -21,7 +21,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemindApp"
+            android:name=".RemindMain"
             android:exported="true"
             android:label="@string/remind_app"
             android:theme="@style/Theme.RemindApp" >
