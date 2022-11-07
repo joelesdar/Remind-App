@@ -1,13 +1,10 @@
 <resources>
-    <string name="app_name">Remind-App</string>
-
-    <!-- Checkout activity -->
-    <string name="remind_app">Remind</string>
-    <string name="checkout_item_description">Description</string>
-    <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is
-        not available on this phone.
-    </string>
-    <string name="payments_show_name" translatable="false">Successfully received payment data for
-        %s!
-    </string>
+    <string name="app_name">Twins</string>
+    <string name="TextoPrueba">Texto de prueba app Twins</string>
+    <string name="botonJugar">JUGAR</string>
+    <string name="botonAtras">Atrás</string>
+    <string name="botonInstrucciones">INSTRUCCIONES</string>
+    <string name="botonVideo">VIDEO GUÍA</string>
+    <string name="maxPuntos">Puntuacion máxima: </string>
+    <string name="ultPuntos">Última puntuación: </string>
 </resources>
