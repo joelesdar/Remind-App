@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Twins</string>
+    <string name="TextoPrueba">Texto de prueba app Twins</string>
+    <string name="botonJugar">JUGAR</string>
+    <string name="botonAtras">Atrás</string>
+    <string name="botonInstrucciones">INSTRUCCIONES</string>
+    <string name="botonVideo">VIDEO GUÍA</string>
+    <string name="maxPuntos">Puntuacion máxima: </string>
+    <string name="ultPuntos">Última puntuación: </string>
+
+    <string name="puntuacion">Puntuación: </string>
+    <string name="tiempo">Tiempo: </string>
+    <string name="reiniciar">Reiniciar</string>
+</resources>
