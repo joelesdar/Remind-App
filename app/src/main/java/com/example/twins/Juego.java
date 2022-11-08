@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -24,10 +25,11 @@ public class Juego extends Activity {
     ImageButton imbAtras;
     Button botonReiniciar, botonInstrucciones, botonVideo;
     TextView textoPuntuacion, textoTiempo;
-    int puntuacion;
+    int puntuacion,pares;
 
     //Imagenes
     int[] imagenes;
+    int oculto;
 
     //Variables juego
     ArrayList<Integer> arrayRandom;
@@ -133,6 +135,7 @@ public class Juego extends Activity {
                 R.drawable.i10,
                 R.drawable.i11
         };
+        oculto = R.drawable.oculto;
     }
 
     //Aleatoriza las imágenes
@@ -156,15 +159,93 @@ public class Juego extends Activity {
         return resultado;
     }
 
+    //Metodo de comprobación
+    private void comprobar(int i, final ImageButton imb){
+        //Carta boca abajo
+        if(primero == null){
+            //se le da imagen y valores a la carta pulsada
+            primero = imb;
+            primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            primero.setImageResource(imagenes[arrayRandom.get(i)]);
+            primero.setEnabled(false);
+            nPrimero = arrayRandom.get(i);
+        //Segunda pulsacion, queda a la vista
+        }else{
+            bloqueo = true;
+            imb.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imb.setImageResource(imagenes[arrayRandom.get(i)]);
+            imb.setEnabled(false);
+            nSegundo = arrayRandom.get(i);
+            if(nPrimero == nSegundo){
+                primero = null;
+                bloqueo = false;
+                pares++;
+                puntuacion++;
+                textoPuntuacion.setText("Puntuación: "+puntuacion);
+                if(pares == arrayRandom.size()/2){
+                    //Toast.makeText(this, "Has ganado!!!", Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(getApplicationContext(),"FELICITACIONES. Has ganado!!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }else{
+                //Espera de imagenes en pantalla de 1s
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        primero.setImageResource(oculto);
+                        primero.setEnabled(true);
+                        imb.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        imb.setImageResource(oculto);
+                        imb.setEnabled(true);
+                        bloqueo = false;
+                        primero = null;
+                        puntuacion--;
+                        textoPuntuacion.setText("Puntuación: "+puntuacion);
+                    }
+                },1000);
+            }
+        }
+    }
+
+    //Método principal
     private void iniciar(){
         cargarTablero();
         cargarBotones();
         cargarTexto();
         cargarImagenes();
         arrayRandom = ordenAleatorio(imagenes.length);
+
+        //Se muestran las imágenes
         for(int i = 0;i< tablero.length;i++){
             tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
             tablero[i].setImageResource(imagenes[arrayRandom.get(i)]);
+            //tablero[i].setImageResource(fondo);
+        }
+        //Luego de medio segundo se ocultan las imágenes
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0;i< tablero.length;i++){
+                    tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    //tablero[i].setImageResource(imagenes[arrayRandom.get(i)]);
+                    tablero[i].setImageResource(oculto);
+                }
+            }
+        },500);
+
+        //interascción
+        for(int i = 0;i< tablero.length;i++){
+            final int j = i;
+            tablero[i].setEnabled(true);
+            tablero[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!bloqueo){
+                        comprobar(j, tablero[j]);
+                    }
+                }
+            });
         }
     }
 
