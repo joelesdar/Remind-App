@@ -11,16 +11,16 @@
         android:id="@+id/botonJuegoAtras"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="16dp"
         android:background="@color/moradoApp"
         android:backgroundTint="#8791F6"
         android:contentDescription="@string/botonAtras"
         android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/backverde"
-        tools:layout_editor_absoluteX="22dp"
-        tools:srcCompat="@mipmap/backverde"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp"
+        tools:srcCompat="@mipmap/backverde" />
 
     <TextView
         android:id="@+id/puntuacion"
@@ -28,7 +28,6 @@
         android:layout_height="70dp"
         android:layout_marginStart="3dp"
         android:fontFamily="@font/pacifico"
-        android:text="@string/puntuacion"
         android:textColor="@color/verdementaApp"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/botonJuegoAtras"
@@ -226,7 +225,7 @@
     <TextView
         android:id="@+id/tiempo"
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/pacifico"
         android:text="@string/tiempo"
         android:textColor="@color/verdementaApp"
@@ -307,7 +306,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
