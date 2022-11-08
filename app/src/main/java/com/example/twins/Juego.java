@@ -135,17 +135,24 @@ public class Juego extends Activity {
         };
     }
 
+    //Aleatoriza las imágenes
     private ArrayList<Integer> ordenAleatorio(int longitud){
         ArrayList<Integer> resultado = new ArrayList<Integer>();
         for (int i = 0;i<longitud*2;i++){
             resultado.add(i % longitud);
         }
-        /**for(int i=0;i<2;i++){
-            int n = (int) (Math.random() * 11 + 1);
-            resultado.remove();
-        }**/
+        int nelim1 = 0;
+        int nelim2 = nelim1;
+        while(nelim2 == nelim1){
+            nelim1 = (int)(Math.random()*12);
+            nelim2 = (int)(Math.random()*12);
+        }
+        resultado.removeAll(Collections.singleton(nelim1));
+        resultado.removeAll(Collections.singleton(nelim2));
+
         Collections.shuffle(resultado);
         System.out.println(Arrays.toString(resultado.toArray()));
+        System.out.println(resultado);
         return resultado;
     }
 
