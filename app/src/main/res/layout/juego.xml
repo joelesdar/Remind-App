@@ -17,10 +17,9 @@
         android:contentDescription="@string/botonAtras"
         android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/backverde"
-        tools:ignore="MissingConstraints"
+        app:srcCompat="@mipmap/botonback"
         tools:layout_editor_absoluteX="20dp"
-        tools:srcCompat="@mipmap/backverde" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/puntuacion"

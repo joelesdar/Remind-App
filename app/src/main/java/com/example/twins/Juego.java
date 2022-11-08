@@ -1,6 +1,7 @@
 package com.example.twins;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -167,6 +169,7 @@ public class Juego extends Activity {
             primero = imb;
             primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
             primero.setImageResource(imagenes[arrayRandom.get(i)]);
+            primero.setBackgroundColor(Color.rgb(111,247,150));
             primero.setEnabled(false);
             nPrimero = arrayRandom.get(i);
         //Segunda pulsacion, queda a la vista
@@ -174,9 +177,12 @@ public class Juego extends Activity {
             bloqueo = true;
             imb.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imb.setImageResource(imagenes[arrayRandom.get(i)]);
+            imb.setBackgroundColor(Color.rgb(111,247,150));
             imb.setEnabled(false);
             nSegundo = arrayRandom.get(i);
             if(nPrimero == nSegundo){
+                primero.setBackgroundColor(Color.rgb(247,246,111));
+                imb.setBackgroundColor(Color.rgb(247,246,111));
                 primero = null;
                 bloqueo = false;
                 pares++;
@@ -198,9 +204,14 @@ public class Juego extends Activity {
                         imb.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         imb.setImageResource(oculto);
                         imb.setEnabled(true);
+                        primero.setBackgroundColor(Color.rgb(247,161,161));
+                        imb.setBackgroundColor(Color.rgb(247,161,161));
                         bloqueo = false;
                         primero = null;
-                        puntuacion--;
+                        if (pares>0){
+                            puntuacion--;
+                        }
+                        //puntuacion--;
                         textoPuntuacion.setText("Puntuación: "+puntuacion);
                     }
                 },1000);
@@ -230,6 +241,7 @@ public class Juego extends Activity {
                     tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
                     //tablero[i].setImageResource(imagenes[arrayRandom.get(i)]);
                     tablero[i].setImageResource(oculto);
+                    tablero[i].setBackgroundColor(Color.rgb(247,161,161));
                 }
             }
         },500);

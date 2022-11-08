@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Twins"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/borderedondo" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,7 +29,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Juego"></activity>
+        <activity android:name=".Juego" />
     </application>
 
 </manifest>
