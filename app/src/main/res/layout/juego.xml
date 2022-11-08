@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/moradoApp"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/botonJuegoAtras"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/moradoApp"
+        android:backgroundTint="#8791F6"
+        android:contentDescription="@string/botonAtras"
+        android:scaleType="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/backverde"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp"
+        tools:srcCompat="@mipmap/backverde" />
+
+    <TextView
+        android:id="@+id/puntuacion"
+        android:layout_width="299dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="3dp"
+        android:fontFamily="@font/pacifico"
+        android:textColor="@color/verdementaApp"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/botonJuegoAtras"
+        app:layout_constraintStart_toEndOf="@+id/botonJuegoAtras"
+        app:layout_constraintTop_toTopOf="@+id/botonJuegoAtras"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tituloTwins"
+        android:layout_width="151dp"
+        android:layout_height="94dp"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/app_name"
+        android:textColor="@color/verdementaApp"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntuacion"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/puntuacion"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:padding="10dp"
+            tools:ignore="ExtraText">
+            //FILA1
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/boton00"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="0"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton01"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="1"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton02"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="2"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton03"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="3"></ImageButton>
+            </TableRow>
+
+            //FILA2
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/boton04"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="0"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton05"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="1"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton06"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="2"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton07"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="3"></ImageButton>
+            </TableRow>
+
+            //FILA3
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/boton08"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="0"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton09"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="1"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton10"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="2"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton11"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="3"></ImageButton>
+            </TableRow>
+
+            //FILA4
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/boton12"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="0"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton13"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="1"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton14"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="2"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton15"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="3"></ImageButton>
+            </TableRow>
+            //FILA5
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/boton16"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="0"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton17"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="1"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton18"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="2"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/boton19"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_column="3"></ImageButton>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tiempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/tiempo"
+        android:textColor="@color/verdementaApp"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/botonReiniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/verdementaApp"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/reiniciar"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiempo"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="404dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/botonVideoguia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verdementaApp"
+            android:baselineAligned="false"
+            android:fontFamily="@font/pacifico"
+            android:text="@string/botonVideo"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/botonInstrucciones"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/botonInstrucciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verdementaApp"
+            android:fontFamily="@font/pacifico"
+            android:text="@string/botonInstrucciones"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/botonVideoguia"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+<TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:padding="10dp">
+
+        //FILA1
+<TableRow
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center">
+
+<ImageButton
+    android:id="@+id/boton00"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="0"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton01"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="1"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton02"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="2"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton03"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="3"></ImageButton>
+</TableRow>
+
+    //FILA2
+<TableRow
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center">
+
+<ImageButton
+    android:id="@+id/boton04"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="0"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton05"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="1"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton06"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="2"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton07"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="3"></ImageButton>
+</TableRow>
+
+    //FILA3
+<TableRow
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center">
+
+<ImageButton
+    android:id="@+id/boton08"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="0"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton09"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="1"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton10"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="2"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton11"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="3"></ImageButton>
+</TableRow>
+
+    //FILA4
+<TableRow
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center">
+
+<ImageButton
+    android:id="@+id/boton12"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="0"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton13"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="1"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton14"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="2"></ImageButton>
+
+<ImageButton
+    android:id="@+id/boton15"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_column="3"></ImageButton>
+</TableRow>
+    </TableLayout>
+    -->

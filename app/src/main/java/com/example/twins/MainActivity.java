@@ -3,54 +3,64 @@ package com.example.twins;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button jugar, instrucciones, video;
-    ImageButton atras;
+    //Variables menuJuego
+    Button botonJugar, botonInstrucciones, botonVideo;
+    ImageButton imbSalir;
+    TextView textoMaxPuntuacion, textoUltPuntuacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        jugar = findViewById(R.id.botonJugar);
-        instrucciones = findViewById(R.id.botonInstrucciones);
-        video = findViewById(R.id.botonVideoguia);
-        atras = findViewById(R.id.botonMainAtras);
+        //Entrelazamiento botones interfaz <> Código
+        botonJugar = findViewById(R.id.botonJugar);
+        botonInstrucciones = findViewById(R.id.botonInstrucciones);
+        botonVideo = findViewById(R.id.botonVideoguia);
+        imbSalir = findViewById(R.id.botonMainAtras);
 
-        jugar.setOnClickListener(new View.OnClickListener() {
+        //Funcionalidad botones
+        botonJugar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 System.out.println("Iniciando Juego...");
+                iniciarJuego();
             }
         });
 
-        instrucciones.setOnClickListener(new View.OnClickListener() {
+        botonInstrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Mostrar las instrucciones...");
             }
         });
-
-        video.setOnClickListener(new View.OnClickListener() {
+        botonVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Mostrar Video Guía...");
             }
         });
-        atras.setOnClickListener(new View.OnClickListener() {
+
+        imbSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Volviendo a pantalla anterior...");
+                System.out.println("Volviendo a pantalla principal (SALIR)...");
                 finish();
             }
         });
     }
-
-
+    //Funcionalidades
+    private void iniciarJuego(){
+        Intent i = new Intent(this, Juego.class);
+        startActivity(i);
+    }
 }
