@@ -22,8 +22,12 @@ public class Juego extends  MainActivity {
     ImageButton[] tablero = new ImageButton[20];
     ImageButton imbAtras;
     Button botonReiniciar, botonInstrucciones, botonVideo;
-    TextView textoPuntuacion, ultPuntuacion, textoTiempo;
+    TextView textoPuntuacion, ultPuntuacion, tiempo;
     int puntuacion,pares;
+    boolean isOn = false;
+    Thread cronometro;
+    int mili=0,min=0,seg=0;
+    Handler h = new Handler();
 
     //Imagenes
     int[] imagenes;
@@ -92,6 +96,7 @@ public class Juego extends  MainActivity {
     //Carga funcional botones
     private void cargarBotones(){
         botonReiniciar = findViewById(R.id.botonReiniciar);
+        tiempo = (TextView)findViewById(R.id.tiempo);
         botonInstrucciones = findViewById(R.id.botonInstrucciones);
         botonVideo = findViewById(R.id.botonVideoguia);
         imbAtras = findViewById(R.id.botonJuegoAtras);
@@ -100,6 +105,9 @@ public class Juego extends  MainActivity {
             @Override
             public void onClick(View view) {
                 iniciar();
+                isOn = false;
+                mili = seg = min= 0;
+                tiempo.setText("Tiempo: 00:00");
                 System.out.println("Reiniciar nivel");
             }
         });
@@ -118,6 +126,55 @@ public class Juego extends  MainActivity {
                 mostrarInstrucciones();
             }
         });
+        //Se crea el thread del cronometro
+        cronometro = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if(isOn){
+                        try {
+                            Thread.sleep(1);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        mili++;
+                        if(mili==999){
+                            seg++;
+                            mili=0;
+                        }
+                        if(seg==59){
+                            min++;
+                            seg=0;
+                        }
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                String m="", s="", mi="";
+                                if (mili<10){
+                                    m = "00"+mili;
+                                }else if(mili<100){
+                                    m = "0"+mili;
+                                }else{
+                                    m = ""+mili;
+                                }
+                                if(seg<10){
+                                    s = "0"+seg;
+                                }else{
+                                    s = ""+seg;
+                                }
+                                if(min<10){
+                                    mi="0"+min;
+                                }else{
+                                    mi = ""+min;
+                                }
+                                tiempo.setText("Tiempo: "+mi+":"+s);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+        cronometro.start();
     }
 
     //Carga texto puntuación
@@ -176,6 +233,7 @@ public class Juego extends  MainActivity {
         //Carta boca abajo
         if(primero == null){
             //se le da imagen y valores a la carta pulsada
+            isOn = true;
             primero = imb;
             primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
             primero.setImageResource(imagenes[arrayRandom.get(i)]);
@@ -200,6 +258,7 @@ public class Juego extends  MainActivity {
                 textoPuntuacion.setText("Puntuación: "+puntuacion);
                 System.out.println("Son par");
                 if(pares == arrayRandom.size()/2){
+                    isOn = false;
                     //ultPuntuacion = findViewById(R.id.ultimaPuntuacion);
                     //ultPuntuacion.setText("Última puntuación: "+ puntuacion);
                     //Toast.makeText(this, "Has ganado!!!", Toast.LENGTH_LONG).show();

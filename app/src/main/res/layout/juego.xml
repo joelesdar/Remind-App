@@ -38,6 +38,7 @@
         android:id="@+id/tituloTwins"
         android:layout_width="151dp"
         android:layout_height="94dp"
+        android:layout_marginTop="-20dp"
         android:fontFamily="@font/pacifico"
         android:text="@string/app_name"
         android:textColor="@color/verdementaApp"
@@ -223,8 +224,8 @@
 
     <TextView
         android:id="@+id/tiempo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="262dp"
+        android:layout_height="80dp"
         android:fontFamily="@font/pacifico"
         android:text="@string/tiempo"
         android:textColor="@color/verdementaApp"
