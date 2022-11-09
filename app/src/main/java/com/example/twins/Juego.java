@@ -26,7 +26,7 @@ public class Juego extends Activity {
     ImageButton[] tablero = new ImageButton[20];
     ImageButton imbAtras;
     Button botonReiniciar, botonInstrucciones, botonVideo;
-    TextView textoPuntuacion, textoTiempo;
+    TextView textoPuntuacion, ultPuntuacion, textoTiempo;
     int puntuacion,pares;
 
     //Imagenes
@@ -189,6 +189,8 @@ public class Juego extends Activity {
                 puntuacion++;
                 textoPuntuacion.setText("Puntuación: "+puntuacion);
                 if(pares == arrayRandom.size()/2){
+                    //ultPuntuacion = findViewById(R.id.ultimaPuntuacion);
+                    //ultPuntuacion.setText("Última puntuación: "+ puntuacion);
                     //Toast.makeText(this, "Has ganado!!!", Toast.LENGTH_LONG).show();
                     Toast toast = Toast.makeText(getApplicationContext(),"FELICITACIONES. Has ganado!!!", Toast.LENGTH_LONG);
                     toast.show();
