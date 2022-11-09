@@ -1,6 +1,5 @@
 package com.example.twins;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,15 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
-public class Juego extends Activity {
+public class Juego extends  MainActivity {
 
     //Variables vista
     ImageButton imb00, imb01, imb02, imb03, imb04, imb05, imb06, imb07, imb08, imb09, imb10, imb11, imb12, imb13, imb14, imb15, imb16, imb17, imb18, imb19;
@@ -90,6 +86,7 @@ public class Juego extends Activity {
         tablero[17] = imb17;
         tablero[18] = imb18;
         tablero[19] = imb19;
+        System.out.println("Carga del tablero");
     }
 
     //Carga funcional botones
@@ -103,6 +100,7 @@ public class Juego extends Activity {
             @Override
             public void onClick(View view) {
                 iniciar();
+                System.out.println("Reiniciar nivel");
             }
         });
 
@@ -110,6 +108,14 @@ public class Juego extends Activity {
             @Override
             public void onClick(View view) {
                 finish();
+                System.out.println("Salir de la pantalla del juego");
+            }
+        });
+
+        botonInstrucciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarInstrucciones();
             }
         });
     }
@@ -119,6 +125,7 @@ public class Juego extends Activity {
         textoPuntuacion = findViewById(R.id.puntuacion);
         puntuacion = 0;
         textoPuntuacion.setText("Puntuación: "+ puntuacion);
+        System.out.println("Carga puntuacion del juego");
     }
 
     //Carga de las imagenes
@@ -138,6 +145,7 @@ public class Juego extends Activity {
                 R.drawable.i11
         };
         oculto = R.drawable.oculto;
+        System.out.println("Carga de las imágenes");
     }
 
     //Aleatoriza las imágenes
@@ -152,12 +160,14 @@ public class Juego extends Activity {
             nelim1 = (int)(Math.random()*12);
             nelim2 = (int)(Math.random()*12);
         }
+        System.out.println("Los numeros a eliminar son: "+nelim1+" y "+nelim2);;
         resultado.removeAll(Collections.singleton(nelim1));
         resultado.removeAll(Collections.singleton(nelim2));
 
         Collections.shuffle(resultado);
         System.out.println(Arrays.toString(resultado.toArray()));
         System.out.println(resultado);
+        System.out.println("Aleatoriza las imágenes");
         return resultado;
     }
 
@@ -186,14 +196,16 @@ public class Juego extends Activity {
                 primero = null;
                 bloqueo = false;
                 pares++;
-                puntuacion++;
+                puntuacion= puntuacion +100;
                 textoPuntuacion.setText("Puntuación: "+puntuacion);
+                System.out.println("Son par");
                 if(pares == arrayRandom.size()/2){
                     //ultPuntuacion = findViewById(R.id.ultimaPuntuacion);
                     //ultPuntuacion.setText("Última puntuación: "+ puntuacion);
                     //Toast.makeText(this, "Has ganado!!!", Toast.LENGTH_LONG).show();
                     Toast toast = Toast.makeText(getApplicationContext(),"FELICITACIONES. Has ganado!!!", Toast.LENGTH_LONG);
                     toast.show();
+                    System.out.println("Juego completado");
                 }
             }else{
                 //Espera de imagenes en pantalla de 1s
@@ -211,12 +223,13 @@ public class Juego extends Activity {
                         bloqueo = false;
                         primero = null;
                         if (pares>0){
-                            puntuacion--;
+                            puntuacion= puntuacion -50;
                         }
                         //puntuacion--;
                         textoPuntuacion.setText("Puntuación: "+puntuacion);
                     }
                 },1000);
+                System.out.println("No son par");
             }
         }
     }
@@ -234,6 +247,7 @@ public class Juego extends Activity {
             tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
             tablero[i].setImageResource(imagenes[arrayRandom.get(i)]);
             //tablero[i].setImageResource(fondo);
+            System.out.println("Se muestran las imagenes por poco tiempo");
         }
         //Luego de medio segundo se ocultan las imágenes
         handler.postDelayed(new Runnable() {
@@ -244,6 +258,7 @@ public class Juego extends Activity {
                     //tablero[i].setImageResource(imagenes[arrayRandom.get(i)]);
                     tablero[i].setImageResource(oculto);
                     tablero[i].setBackgroundColor(Color.rgb(247,161,161));
+                    System.out.println("Se ocultan las imagenes");
                 }
             }
         },500);
@@ -257,6 +272,7 @@ public class Juego extends Activity {
                 public void onClick(View view) {
                     if(!bloqueo){
                         comprobar(j, tablero[j]);
+                        System.out.println("Listo para la comprobación");
                     }
                 }
             });
