@@ -57,8 +57,13 @@ public class pictureGameScreen extends AppCompatActivity {
         RandomImages();
         iniciarTiempo();
 
-        /**Seleccion de imagenes**/
-
+        instrucciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarInstrucciones();
+                System.out.println("Mostrar las instrucciones...");
+            }
+        });
 
 
     }
