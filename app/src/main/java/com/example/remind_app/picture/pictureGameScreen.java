@@ -1,8 +1,11 @@
 package com.example.remind_app.picture;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.remind_app.Picture;
 import com.example.remind_app.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.Random;
 
 public class pictureGameScreen extends AppCompatActivity {
@@ -17,45 +24,97 @@ public class pictureGameScreen extends AppCompatActivity {
     // Imagenes que se mostraran en pantalla
     ImageView image1, image2, image3, image4;
 
+    Button instrucciones;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_game_screen);
         getSupportActionBar().hide();
 
-//        image1 = (ImageView) findViewById(R.id.imagen1);
-//        image2 = (ImageView) findViewById(R.id.imagen2);
-//        image3 = (ImageView) findViewById(R.id.imagen3);
-//        image4 = (ImageView) findViewById(R.id.imagen4);
+        image1 = (ImageView) findViewById(R.id.imagen1);
+        image2 = (ImageView) findViewById(R.id.imagen2);
+        image3 = (ImageView) findViewById(R.id.imagen3);
+        image4 = (ImageView) findViewById(R.id.imagen4);
 
+        instrucciones = findViewById(R.id.botonInstruccionesPicture2);
+
+        /** Seleccion de imagenes aleatorias **/
         int [] imagenes = { R.drawable.picturefigura1,
-                            R.drawable.picturefigura2,
-                            R.drawable.picturefigura3,
-                            R.drawable.picturefigura4,
-                            R.drawable.picturefigura5,
-                            R.drawable.picturefigura6,
-                            R.drawable.picturefigura7,
-                            R.drawable.picturefigura8,
-                            R.drawable.picturefigura9,
-                            R.drawable.picturefigura10,
-                            R.drawable.picturefigura11};
+                R.drawable.picturefigura2,
+                R.drawable.picturefigura3,
+                R.drawable.picturefigura4,
+                R.drawable.picturefigura5,
+                R.drawable.picturefigura6,
+                R.drawable.picturefigura7,
+                R.drawable.picturefigura8,
+                R.drawable.picturefigura9,
+                R.drawable.picturefigura10,
+                R.drawable.picturefigura11};
 
         Random r = new Random(2);
 
-        int image = r.nextInt();
+        int image = r.nextInt(10);
+        image1.setImageResource(imagenes[image]);
 
-//        image1.setImageResource(R.drawable.picturefigura3);
+        image = r.nextInt(10);
+        image2.setImageResource(imagenes[image]);
 
-    }
+        image = r.nextInt(10);
+        image3.setImageResource(imagenes[image]);
 
-    /** Funcion para generar imagen al azar */
-    public void RandomImage(View view) {
-        // void
+        image = r.nextInt(10);
+        image4.setImageResource(imagenes[image]);
+
+        instrucciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarInstrucciones();
+                System.out.println("Mostrar las instrucciones...");
+            }
+        });
+
     }
 
     /** Funcion para regresar al menu del juego picture */
     public void RegresoPicture(View view) {
         Intent picture = new Intent (this, Picture.class);
         startActivity(picture);
+    }
+
+    /** Mostrar las instrucciones del juego**/
+    public void mostrarInstrucciones(){
+        String instruccionesLeidas = new String();
+        try {
+            instruccionesLeidas = leerInstrucciones();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AlertDialog.Builder instrucciones = new AlertDialog.Builder(pictureGameScreen.this);
+        instrucciones.setMessage(instruccionesLeidas)
+                .setCancelable(false)
+                .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog titulo = instrucciones.create();
+        titulo.setTitle("PICTURE");
+        titulo.show();
+    }
+
+    /** Traer las instrucciones de juego desde txt **/
+    public String leerInstrucciones()throws IOException{
+        String sInstrucciones = "";
+        int id = getResources().getIdentifier("instruccionespicture","raw",getPackageName());
+        InputStream is = this.getResources().openRawResource(id);
+        Scanner txtInstrucciones = new Scanner(new InputStreamReader(is));
+
+        while(txtInstrucciones.hasNextLine()){
+            sInstrucciones+=txtInstrucciones.nextLine()+"\n";
+        }
+        is.close();
+        return sInstrucciones;
     }
 }
