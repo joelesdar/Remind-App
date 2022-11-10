@@ -26,6 +26,20 @@ public class pictureGameScreen extends AppCompatActivity {
 
     Button instrucciones;
 
+    int [] imagenes = { R.drawable.picturefigura1,
+            R.drawable.picturefigura2,
+            R.drawable.picturefigura3,
+            R.drawable.picturefigura4,
+            R.drawable.picturefigura5,
+            R.drawable.picturefigura6,
+            R.drawable.picturefigura7,
+            R.drawable.picturefigura8,
+            R.drawable.picturefigura9,
+            R.drawable.picturefigura10,
+            R.drawable.picturefigura11};
+
+    Random r = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,31 +54,18 @@ public class pictureGameScreen extends AppCompatActivity {
         instrucciones = findViewById(R.id.botonInstruccionesPicture2);
 
         /** Seleccion de imagenes aleatorias **/
-        int [] imagenes = { R.drawable.picturefigura1,
-                R.drawable.picturefigura2,
-                R.drawable.picturefigura3,
-                R.drawable.picturefigura4,
-                R.drawable.picturefigura5,
-                R.drawable.picturefigura6,
-                R.drawable.picturefigura7,
-                R.drawable.picturefigura8,
-                R.drawable.picturefigura9,
-                R.drawable.picturefigura10,
-                R.drawable.picturefigura11};
 
-        Random r = new Random(2);
+        int image = imagenes[r.nextInt(imagenes.length - 1)];
+        image1.setImageResource(image);
 
-        int image = r.nextInt(10);
-        image1.setImageResource(imagenes[image]);
+        image = imagenes[r.nextInt(imagenes.length - 1)];
+        image2.setImageResource(image);
 
-        image = r.nextInt(10);
-        image2.setImageResource(imagenes[image]);
+        image = imagenes[r.nextInt(imagenes.length - 1)];
+        image3.setImageResource(image);
 
-        image = r.nextInt(10);
-        image3.setImageResource(imagenes[image]);
-
-        image = r.nextInt(10);
-        image4.setImageResource(imagenes[image]);
+        image = imagenes[r.nextInt(imagenes.length - 1)];
+        image4.setImageResource(image);
 
         instrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
