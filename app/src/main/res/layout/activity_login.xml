@@ -27,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.162" />
 
     <Button
         android:id="@+id/button"
@@ -35,30 +35,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@color/Secondary"
+        android:onClick="Ingresar"
         android:text="Ingresar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppTitle"
-        app:layout_constraintVertical_bias="0.125"
-        app:strokeColor="@color/Alert"
-        app:strokeWidth="4px"
-        tools:ignore="MissingConstraints"
-        android:onClick="Ingresar"/>
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/Secondary"
-        android:onClick="Registrar"
-        android:text="Registrarse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AppTitle"
-        app:layout_constraintVertical_bias="0.394"
+        app:layout_constraintVertical_bias="0.324"
         app:strokeColor="@color/Alert"
         app:strokeWidth="4px"
         tools:ignore="MissingConstraints" />
@@ -73,6 +56,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.282" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
