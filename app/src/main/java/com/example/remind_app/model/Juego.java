@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "JUEGO", uniqueConstraints = @UniqueConstraint(columnNames = "nombreJuego"))
 public class Juego {
+
     @Id
     @Column(name = "nombreJuego", nullable = false)
     private String nombreJuego;
@@ -13,7 +14,6 @@ public class Juego {
     private Usuario usuario;
 
     public Juego() {
-
     }
 
     public String getNombreJuego() {
