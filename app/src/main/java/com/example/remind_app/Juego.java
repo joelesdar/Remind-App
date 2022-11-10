@@ -1,4 +1,4 @@
-package com.example.twins;
+package com.example.remind_app;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,11 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Juego extends  MainActivity {
+public class Juego extends MainActivity {
 
     //Variables vista
     ImageButton imb00, imb01, imb02, imb03, imb04, imb05, imb06, imb07, imb08, imb09, imb10, imb11, imb12, imb13, imb14, imb15, imb16, imb17, imb18, imb19;

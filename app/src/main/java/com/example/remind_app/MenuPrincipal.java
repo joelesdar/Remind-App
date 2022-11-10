@@ -20,4 +20,10 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent pictureGame = new Intent (this, Picture.class);
         startActivity(pictureGame);
     }
+
+    /** Funcion para ingresar al juego twins */
+    public void IngresoTwins(View view) {
+        Intent twinsGame = new Intent (this, MainActivity.class);
+        startActivity(twinsGame);
+    }
 }
