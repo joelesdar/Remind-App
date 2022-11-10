@@ -40,7 +40,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="-20dp"
         android:fontFamily="@font/pacifico"
-        android:text="@string/app_name"
+        android:text="Twins"
         android:textColor="@color/verdementaApp"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
