@@ -17,4 +17,8 @@
     <string name="botonVideo">VIDEO GUÍA</string>
     <string name="maxPuntos">Puntuacion máxima: </string>
     <string name="ultPuntos">Última puntuación: </string>
+
+    <string name="puntuacion">Puntuación: </string>
+    <string name="tiempo">Tiempo: 00:00</string>
+    <string name="reiniciar">Reiniciar</string>
 </resources>
