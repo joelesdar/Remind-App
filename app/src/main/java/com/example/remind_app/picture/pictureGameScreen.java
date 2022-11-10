@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,8 +18,8 @@ import com.example.remind_app.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class pictureGameScreen extends AppCompatActivity {
 
@@ -92,22 +91,27 @@ public class pictureGameScreen extends AppCompatActivity {
 
     // Temporizador
     private void iniciarTiempo(){
-        long segs = 5;
+        long segs = 5000;
 
-        CountDownTimer contador = new CountDownTimer(segs, 5000) {
+        CountDownTimer contador = new CountDownTimer(segs, 1000) {
             @Override
             public void onTick(long l) {
                 long tiempo = l;
+                long segundos = tiempo/1000;
 
-                String timeJuego = String.format("%02d", tiempo);
+                String timeJuego = String.format("%02d", segundos);
 
                 time.setText("Tiempo restante: "+timeJuego+" seg");
             }
 
             @Override
             public void onFinish() {
-                Toast.makeText(pictureGameScreen.this, "Se acabo el tiempo", Toast.LENGTH_SHORT).show();
                 time.setText("");
+                // ocultar imagenes
+                image1.setImageResource(R.drawable.googlepay_button_overlay);
+                image2.setImageResource(R.drawable.googlepay_button_overlay);
+                image3.setImageResource(R.drawable.googlepay_button_overlay);
+                image4.setImageResource(R.drawable.googlepay_button_overlay);
             }
         }.start();
     }
