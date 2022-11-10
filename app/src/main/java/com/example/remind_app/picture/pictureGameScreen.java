@@ -25,6 +25,7 @@ public class pictureGameScreen extends AppCompatActivity {
 
     // Imagenes que se mostraran en pantalla
     ImageView image1, image2, image3, image4;
+    ImageView imguser1, imguser2, imguser3, imguser4;
 
     Button instrucciones;
 
@@ -36,33 +37,35 @@ public class pictureGameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_picture_game_screen);
         getSupportActionBar().hide();
 
+        // imagenes del juego
         image1 = (ImageView) findViewById(R.id.imagen1);
         image2 = (ImageView) findViewById(R.id.imagen2);
         image3 = (ImageView) findViewById(R.id.imagen3);
         image4 = (ImageView) findViewById(R.id.imagen4);
 
+        // imagenes con las que interactua el usuario
+        imguser1 = (ImageView) findViewById(R.id.img1);
+        imguser2 = (ImageView) findViewById(R.id.img2);
+        imguser3 = (ImageView) findViewById(R.id.img3);
+        imguser4 = (ImageView) findViewById(R.id.img4);
+
         time = (TextView) findViewById(R.id.gameTime);
 
         instrucciones = findViewById(R.id.botonInstruccionesPicture2);
 
-        /** Seleccion de imagenes aleatorias **/
+        /** Funciones de juego **/
         RandomImages();
         iniciarTiempo();
 
-        instrucciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarInstrucciones();
-                System.out.println("Mostrar las instrucciones...");
-            }
-        });
+        /**Seleccion de imagenes**/
+
 
 
     }
 
     /** Seleccion de imagenes aleatorias **/
     private void RandomImages () {
-        int [] imagenes = { R.drawable.picturefigura1,
+        int[] imagenes = {R.drawable.picturefigura1,
                 R.drawable.picturefigura2,
                 R.drawable.picturefigura3,
                 R.drawable.picturefigura4,
@@ -76,20 +79,27 @@ public class pictureGameScreen extends AppCompatActivity {
 
         Random r = new Random();
 
-        int image = imagenes[r.nextInt(imagenes.length - 1)];
-        image1.setImageResource(image);
+        int imageshow1 = imagenes[r.nextInt(imagenes.length - 1)];
+        image1.setImageResource(imageshow1);
+        imguser1.setImageResource(imageshow1);
 
-        image = imagenes[r.nextInt(imagenes.length - 1)];
-        image2.setImageResource(image);
+        int imageshow2 = imagenes[r.nextInt(imagenes.length - 1)];
+        image2.setImageResource(imageshow2);
+        imguser2.setImageResource(imageshow2);
 
-        image = imagenes[r.nextInt(imagenes.length - 1)];
-        image3.setImageResource(image);
+        int imageshow3 = imagenes[r.nextInt(imagenes.length - 1)];
+        image3.setImageResource(imageshow3);
+        imguser3.setImageResource(imageshow3);
 
-        image = imagenes[r.nextInt(imagenes.length - 1)];
-        image4.setImageResource(image);
+        int imageshow4 = imagenes[r.nextInt(imagenes.length - 1)];
+        image4.setImageResource(imageshow4);
+        imguser4.setImageResource(imageshow4);
+
     }
 
-    // Temporizador
+
+
+    /**Temporizador**/
     private void iniciarTiempo(){
         long segs = 5000;
 
@@ -112,10 +122,14 @@ public class pictureGameScreen extends AppCompatActivity {
                 image2.setImageResource(R.drawable.googlepay_button_overlay);
                 image3.setImageResource(R.drawable.googlepay_button_overlay);
                 image4.setImageResource(R.drawable.googlepay_button_overlay);
+
+                imguser1.setVisibility(View.VISIBLE);
+                imguser2.setVisibility(View.VISIBLE);
+                imguser3.setVisibility(View.VISIBLE);
+                imguser4.setVisibility(View.VISIBLE);
             }
         }.start();
     }
-
 
     /** Funcion para regresar al menu del juego picture */
     public void RegresoPicture(View view) {

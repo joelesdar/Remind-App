@@ -44,9 +44,6 @@ public class Picture extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
     /** Regresar al menu principal **/
