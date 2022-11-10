@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,19 +29,7 @@ public class pictureGameScreen extends AppCompatActivity {
 
     Button instrucciones;
 
-    int [] imagenes = { R.drawable.picturefigura1,
-            R.drawable.picturefigura2,
-            R.drawable.picturefigura3,
-            R.drawable.picturefigura4,
-            R.drawable.picturefigura5,
-            R.drawable.picturefigura6,
-            R.drawable.picturefigura7,
-            R.drawable.picturefigura8,
-            R.drawable.picturefigura9,
-            R.drawable.picturefigura10,
-            R.drawable.picturefigura11};
-
-    Random r = new Random();
+    TextView time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +42,40 @@ public class pictureGameScreen extends AppCompatActivity {
         image3 = (ImageView) findViewById(R.id.imagen3);
         image4 = (ImageView) findViewById(R.id.imagen4);
 
+        time = (TextView) findViewById(R.id.gameTime);
+
         instrucciones = findViewById(R.id.botonInstruccionesPicture2);
 
         /** Seleccion de imagenes aleatorias **/
+        RandomImages();
+        iniciarTiempo();
+
+        instrucciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarInstrucciones();
+                System.out.println("Mostrar las instrucciones...");
+            }
+        });
+
+
+    }
+
+    /** Seleccion de imagenes aleatorias **/
+    private void RandomImages () {
+        int [] imagenes = { R.drawable.picturefigura1,
+                R.drawable.picturefigura2,
+                R.drawable.picturefigura3,
+                R.drawable.picturefigura4,
+                R.drawable.picturefigura5,
+                R.drawable.picturefigura6,
+                R.drawable.picturefigura7,
+                R.drawable.picturefigura8,
+                R.drawable.picturefigura9,
+                R.drawable.picturefigura10,
+                R.drawable.picturefigura11};
+
+        Random r = new Random();
 
         int image = imagenes[r.nextInt(imagenes.length - 1)];
         image1.setImageResource(image);
@@ -66,16 +88,30 @@ public class pictureGameScreen extends AppCompatActivity {
 
         image = imagenes[r.nextInt(imagenes.length - 1)];
         image4.setImageResource(image);
-
-        instrucciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarInstrucciones();
-                System.out.println("Mostrar las instrucciones...");
-            }
-        });
-
     }
+
+    // Temporizador
+    private void iniciarTiempo(){
+        long segs = 5;
+
+        CountDownTimer contador = new CountDownTimer(segs, 5000) {
+            @Override
+            public void onTick(long l) {
+                long tiempo = l;
+
+                String timeJuego = String.format("%02d", tiempo);
+
+                time.setText("Tiempo restante: "+timeJuego+" seg");
+            }
+
+            @Override
+            public void onFinish() {
+                Toast.makeText(pictureGameScreen.this, "Se acabo el tiempo", Toast.LENGTH_SHORT).show();
+                time.setText("");
+            }
+        }.start();
+    }
+
 
     /** Funcion para regresar al menu del juego picture */
     public void RegresoPicture(View view) {
