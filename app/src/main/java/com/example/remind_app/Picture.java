@@ -1,19 +1,24 @@
 package com.example.remind_app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.remind_app.picture.pictureGameScreen;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 public class Picture extends AppCompatActivity {
 
-    Button jugar, instrucciones, video;
-    ImageButton atras;
+    Button instrucciones, video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class Picture extends AppCompatActivity {
         instrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mostrarInstrucciones();
                 System.out.println("Mostrar las instrucciones...");
             }
         });
@@ -39,17 +45,56 @@ public class Picture extends AppCompatActivity {
         });
 
 
+
+
     }
 
-    /** Regresar al menu principal */
+    /** Regresar al menu principal **/
     public void Regresar (View view) {
         Intent menu = new Intent (this, MenuPrincipal.class);
         startActivity(menu);
     }
 
-    /** Ingresar al juego */
+    /** Ingresar al juego **/
     public void IngresoJuegoPicture (View view) {
         Intent game = new Intent (this, pictureGameScreen.class);
         startActivity(game);
     }
+
+    /** Mostrar las instrucciones del juego**/
+    public void mostrarInstrucciones(){
+        String instruccionesLeidas = new String();
+        try {
+            instruccionesLeidas = leerInstrucciones();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AlertDialog.Builder instrucciones = new AlertDialog.Builder(Picture.this);
+        instrucciones.setMessage(instruccionesLeidas)
+                .setCancelable(false)
+                .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog titulo = instrucciones.create();
+        titulo.setTitle("PICTURE");
+        titulo.show();
+    }
+
+    /** Traer las instrucciones de juego desde txt **/
+    public String leerInstrucciones()throws IOException{
+        String sInstrucciones = "";
+        int id = getResources().getIdentifier("instruccionespicture","raw",getPackageName());
+        InputStream is = this.getResources().openRawResource(id);
+        Scanner txtInstrucciones = new Scanner(new InputStreamReader(is));
+
+        while(txtInstrucciones.hasNextLine()){
+            sInstrucciones+=txtInstrucciones.nextLine()+"\n";
+        }
+        is.close();
+        return sInstrucciones;
+    }
+
 }
