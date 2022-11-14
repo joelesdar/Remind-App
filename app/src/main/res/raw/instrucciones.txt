@@ -1,0 +1,5 @@
+El objetivo del juego es memorizar la ubicación de las diferentes cartas.
+
+Se seleccionaran de manera sucesiva dos cartas, si estas son iguales formando pareja se quedaran boca arriba, si son diferentes, estas se voltearan de nuevo y se debera memorizar la ubicación para encontrar la pareja.
+
+La partida terminará cuando se encuentren todas las parejas.

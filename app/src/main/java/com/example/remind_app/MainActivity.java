@@ -1,64 +1,70 @@
 package com.example.remind_app;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.remind_app.picture.pictureGameScreen;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Picture extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    Button instrucciones, video;
+    //Variables menuJuego
+    Button botonJugar, botonInstrucciones, botonVideo;
+    ImageButton imbSalir;
+    TextView textoMaxPuntuacion, textoUltPuntuacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture);
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_main);
 
-        instrucciones = findViewById(R.id.botonInstruccionesPicture);
-        video = findViewById(R.id.botonVideoguiaPicture);
+        //Entrelazamiento botones interfaz <> Código
+        botonJugar = findViewById(R.id.botonJugar);
+        botonInstrucciones = findViewById(R.id.botonInstrucciones);
+        botonVideo = findViewById(R.id.botonVideoguia);
+        imbSalir = findViewById(R.id.botonMainAtras);
 
-        instrucciones.setOnClickListener(new View.OnClickListener() {
+        //Funcionalidad botones
+        botonJugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Iniciando Juego...");
+                iniciarJuego();
+            }
+        });
+
+        botonInstrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mostrarInstrucciones();
                 System.out.println("Mostrar las instrucciones...");
             }
         });
-
-        video.setOnClickListener(new View.OnClickListener() {
+        botonVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Mostrar Video Guía...");
             }
         });
 
+        imbSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Volviendo a pantalla principal (SALIR)...");
+                finish();
+            }
+        });
     }
-
-    /** Regresar al menu principal **/
-    public void Regresar (View view) {
-        Intent menu = new Intent (this, MenuPrincipal.class);
-        startActivity(menu);
-    }
-
-    /** Ingresar al juego **/
-    public void IngresoJuegoPicture (View view) {
-        Intent game = new Intent (this, pictureGameScreen.class);
-        startActivity(game);
-    }
-
-    /** Mostrar las instrucciones del juego**/
     public void mostrarInstrucciones(){
         String instruccionesLeidas = new String();
         try {
@@ -66,7 +72,8 @@ public class Picture extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        AlertDialog.Builder instrucciones = new AlertDialog.Builder(Picture.this);
+        AlertDialog.Builder instrucciones = new AlertDialog.Builder(MainActivity.this);
+        //instrucciones.setMessage("Estas serían las instruciones")
         instrucciones.setMessage(instruccionesLeidas)
                 .setCancelable(false)
                 .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
@@ -76,14 +83,13 @@ public class Picture extends AppCompatActivity {
                     }
                 });
         AlertDialog titulo = instrucciones.create();
-        titulo.setTitle("PICTURE");
+        titulo.setTitle("TWINS");
         titulo.show();
     }
 
-    /** Traer las instrucciones de juego desde txt **/
     public String leerInstrucciones()throws IOException{
         String sInstrucciones = "";
-        int id = getResources().getIdentifier("instruccionespicture","raw",getPackageName());
+        int id = getResources().getIdentifier("instrucciones","raw",getPackageName());
         InputStream is = this.getResources().openRawResource(id);
         Scanner txtInstrucciones = new Scanner(new InputStreamReader(is));
 
@@ -94,4 +100,16 @@ public class Picture extends AppCompatActivity {
         return sInstrucciones;
     }
 
+
+
+    //Funcionalidades
+    private void iniciarJuego(){
+        Intent i = new Intent(this, Juego.class);
+        startActivity(i);
+    }
+    /** Regresar al menu principal **/
+    public void Regresar (View view) {
+        Intent menu = new Intent (this, MenuPrincipal.class);
+        startActivity(menu);
+    }
 }

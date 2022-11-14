@@ -4,47 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Picture">
+    android:background="@color/moradoApp"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/brainFondo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:alpha="0.4"
-        android:background="@color/purple_700"
+        android:alpha="0.15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@mipmap/brainverde" />
+        app:srcCompat="@mipmap/brainfondoverde" />
 
     <ImageButton
         android:id="@+id/botonMainAtras"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="19dp"
         android:layout_marginBottom="68dp"
+        android:background="@null"
         android:contentDescription="@string/botonAtras"
         android:onClick="Regresar"
-        app:layout_constraintBottom_toTopOf="@+id/botonJugarPicture"
+        app:layout_constraintBottom_toTopOf="@+id/botonJugar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/backverde"
+        app:srcCompat="@mipmap/botonback"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="22dp" />
 
     <Button
-        android:id="@+id/botonJugarPicture"
+        android:id="@+id/botonJugar"
         android:layout_width="354dp"
         android:layout_height="79dp"
-        android:backgroundTint="@color/amarilloApp"
+        android:background="@color/amarilloApp"
         android:backgroundTintMode="add"
         android:fontFamily="@font/pacifico"
         android:includeFontPadding="false"
-        android:onClick="IngresoJuegoPicture"
         android:text="@string/botonJugar"
         android:textColor="@color/rosaApp"
         android:textSize="34sp"
@@ -52,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPicture"
+        app:layout_constraintTop_toBottomOf="@+id/tituloTwins"
         app:layout_constraintVertical_bias="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -73,55 +72,59 @@
         android:id="@+id/constraintLayout"
         android:layout_width="412dp"
         android:layout_height="163dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="1dp">
 
         <Button
-            android:id="@+id/botonVideoguiaPicture"
+            android:id="@+id/botonVideoguia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/verdementaApp"
             android:baselineAligned="false"
             android:fontFamily="@font/pacifico"
             android:text="@string/botonVideo"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/botonInstruccionesPicture"
+            app:layout_constraintStart_toEndOf="@+id/botonInstrucciones"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
         <Button
-            android:id="@+id/botonInstruccionesPicture"
+            android:id="@+id/botonInstrucciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/verdementaApp"
             android:fontFamily="@font/pacifico"
             android:text="@string/botonInstrucciones"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/botonVideoguiaPicture"
+            app:layout_constraintEnd_toStartOf="@+id/botonVideoguia"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tituloPicture"
-        android:layout_width="213dp"
-        android:layout_height="99dp"
+        android:id="@+id/tituloTwins"
+        android:layout_width="202dp"
+        android:layout_height="147dp"
         android:fontFamily="@font/pacifico"
-        android:text="Picture"
+        android:text="@string/app_name"
         android:textColor="@color/verdementaApp"
-        android:textSize="60sp"
+        android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/botonMainAtras"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="19dp" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -132,26 +135,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonJugarPicture"
+        app:layout_constraintTop_toBottomOf="@+id/botonJugar"
         app:layout_constraintVertical_bias="0.5">
 
         <TextView
-            android:id="@+id/maximaPuntuacionPicture"
+            android:id="@+id/maximaPuntuacion"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:text="Puntuación máxima: 0"
-            android:textAlignment="center"
+            android:text="@string/maxPuntos"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/ultimaPuntuacionPicture"
+            android:id="@+id/ultimaPuntuacion"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Última puntuación: 0"
-            android:textAlignment="center"
+            android:text="@string/ultPuntos"
             android:textColor="@color/black"
             android:textSize="24sp" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
