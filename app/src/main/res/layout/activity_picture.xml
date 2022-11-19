@@ -139,7 +139,8 @@
             android:id="@+id/maximaPuntuacionPicture"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:text="@string/maxPuntos"
+            android:text="Puntuación máxima: 0"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
@@ -147,7 +148,8 @@
             android:id="@+id/ultimaPuntuacionPicture"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="@string/ultPuntos"
+            android:text="Última puntuación: 0"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp" />
     </LinearLayout>
