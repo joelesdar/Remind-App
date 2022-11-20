@@ -535,4 +535,10 @@ public class pictureGameScreen extends AppCompatActivity {
         is.close();
         return sInstrucciones;
     }
+
+    /** Funcion visualizar el video guia */
+    public void Ingresoguia(View view) {
+        Intent guia = new Intent (this, videoGuia.class);
+        startActivity(guia);
+    }
 }

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.remind_app.twins.videoGuia;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -49,12 +51,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mostrarInstrucciones();
                 System.out.println("Mostrar las instrucciones...");
-            }
-        });
-        botonVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Mostrar Video Guía...");
             }
         });
 
@@ -112,5 +108,11 @@ public class MainActivity extends AppCompatActivity {
     public void Regresar (View view) {
         Intent menu = new Intent (this, MenuPrincipal.class);
         startActivity(menu);
+    }
+
+    /** Funcion visualizar el video guia */
+    public void Ingresoguia(View view) {
+        Intent guia = new Intent (this, videoGuia.class);
+        startActivity(guia);
     }
 }

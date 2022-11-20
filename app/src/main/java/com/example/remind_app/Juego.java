@@ -1,5 +1,6 @@
 package com.example.remind_app;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.remind_app.twins.videoGuia;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -338,6 +341,12 @@ public class Juego extends MainActivity {
                 }
             });
         }
+    }
+
+    /** Funcion visualizar el video guia */
+    public void Ingresoguia(View view) {
+        Intent guia = new Intent (this, videoGuia.class);
+        startActivity(guia);
     }
 
 }

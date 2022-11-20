@@ -40,14 +40,6 @@ public class Picture extends AppCompatActivity {
             }
         });
 
-//        video.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                new pictureVideoGuia(contexto);
-//                System.out.println("Mostrar Video Guía...");
-//            }
-//        });
-
     }
 
     /** Regresar al menu principal **/
@@ -98,7 +90,7 @@ public class Picture extends AppCompatActivity {
         return sInstrucciones;
     }
 
-    /** Funcion para ingresar al juego twins */
+    /** Funcion visualizar el video guia */
     public void Ingresoguia(View view) {
         Intent guia = new Intent (this, videoGuia.class);
         startActivity(guia);

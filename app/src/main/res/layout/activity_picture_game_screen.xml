@@ -102,6 +102,7 @@
         android:backgroundTint="@color/verdementaApp"
         android:baselineAligned="false"
         android:fontFamily="@font/pacifico"
+        android:onClick="Ingresoguia"
         android:text="@string/botonVideo"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -19,6 +19,9 @@
             android:name=".picture.videoGuia"
             android:exported="true" />
         <activity
+            android:name=".twins.videoGuia"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <meta-data

@@ -1,4 +1,4 @@
-package com.example.remind_app.picture;
+package com.example.remind_app.twins;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +9,7 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.remind_app.Picture;
+import com.example.remind_app.MainActivity;
 import com.example.remind_app.R;
 
 public class videoGuia extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class videoGuia extends AppCompatActivity {
 
         // establecer direccion del video
         video = (VideoView) findViewById(R.id.guiapicture);
-        video.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiapicture));
+        video.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiatwins));
 
         video.start();
 
@@ -34,16 +34,16 @@ public class videoGuia extends AppCompatActivity {
         regreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegresoPicture(view);
+                RegresoTwins(view);
             }
         });
 
     }
 
-    /**Funcion para regresar al menu del juego picture**/
-    public void RegresoPicture(View view) {
-        Intent picture = new Intent(this, Picture.class);
-        startActivity(picture);
+    /**Funcion para regresar al menu del juego twins**/
+    public void RegresoTwins(View view) {
+        Intent twins = new Intent(this, MainActivity.class);
+        startActivity(twins);
     }
 
 }
