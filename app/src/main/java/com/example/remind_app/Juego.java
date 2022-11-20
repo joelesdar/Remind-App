@@ -46,7 +46,7 @@ public class Juego extends MainActivity {
     int puntuacionMaxima;
     boolean isOn = false;
     Thread cronometro;
-    int mili=0,min=0,seg=0;
+    int mili=0,min=0,seg=0, racha=1;
     Handler h = new Handler();
 
     //Imagenes
@@ -68,6 +68,7 @@ public class Juego extends MainActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego);
+        establecerPuntuacionMaxima();
         iniciar();
     }
 
@@ -278,16 +279,16 @@ public class Juego extends MainActivity {
                 primero = null;
                 bloqueo = false;
                 pares++;
-                puntuacion= puntuacion +100;
+                puntuacion+=100*racha;
+                racha++;
                 textoPuntuacion.setText("Puntuación: "+puntuacion);
                 System.out.println("Son par");
                 if(pares == arrayRandom.size()/2){
                     isOn = false;
-                    //ultPuntuacion = findViewById(R.id.ultimaPuntuacion);
-                    //ultPuntuacion.setText("Última puntuación: "+ puntuacion);
-                    //Toast.makeText(this, "Has ganado!!!", Toast.LENGTH_LONG).show();
-                    Toast toast = Toast.makeText(getApplicationContext(),"FELICITACIONES. Has ganado!!!", Toast.LENGTH_LONG);
-                    toast.show();
+                    establecerPuntuaciones();
+                    //Toast toast = Toast.makeText(getApplicationContext(),establecerMensaje(puntuacion,puntuacionMaxima), Toast.LENGTH_LONG);
+                    //toast.show();
+                    mostrarResultadoPartida();
                     System.out.println("Juego completado");
                 }
             }else{
@@ -306,15 +307,74 @@ public class Juego extends MainActivity {
                         bloqueo = false;
                         primero = null;
                         if (pares>0){
-                            puntuacion= puntuacion -50;
+                            puntuacion-=50;
+                            racha=1;
                         }
-                        //puntuacion--;
                         textoPuntuacion.setText("Puntuación: "+puntuacion);
                     }
                 },1000);
                 System.out.println("No son par");
             }
         }
+    }
+
+    public void mostrarResultadoPartida(){
+        establecerPuntuaciones();
+        AlertDialog.Builder resultado = new AlertDialog.Builder(Juego.this);
+        resultado.setMessage(establecerMensaje(puntuacion,puntuacionMaxima))
+                .setCancelable(false)
+                .setPositiveButton("Volver al inicio", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent picture = new Intent(Juego.this, MainActivity.class);
+                        startActivity(picture);
+                    }
+                });
+        AlertDialog titulo = resultado.create();
+        titulo.setTitle("Twins");
+        titulo.show();
+    }
+
+    public String establecerMensaje(int puntuacion, int puntuacionMaxima){
+        String mensaje;
+        if(puntuacion>puntuacionMaxima){
+            mensaje = "¡Felicidades, has superado tu puntuación maxima, has llegado a los "+puntuacion+" puntos!";
+        }else if(puntuacion>0){
+            mensaje = "¡Felicidades, has obtenido "+puntuacion+" puntos!";
+        }else{
+            mensaje = "Has obtenido "+puntuacion+" puntos, ¡pero aún se puede mejorar!";
+        }
+        return mensaje;
+    }
+
+    public void establecerPuntuaciones(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Map<String, Object> Puntuaciones = new HashMap<>();
+                    if(puntuacion>puntuacionMaxima){
+                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
+                    }else{
+                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
+                    }
+                    Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
+                    db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").set(Puntuaciones);
+                }
+            }
+        );
+    }
+
+    public void establecerPuntuacionMaxima(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
+                    puntuacionMaxima = Integer.parseInt(MaxPuntuacion);
+                }
+            }
+        });
     }
 
     //Método principal
