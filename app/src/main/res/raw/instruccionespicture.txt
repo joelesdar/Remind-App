@@ -1,8 +1,8 @@
 El juego consiste en memorizar la ubicación de cuatro imágenes diferentes.
 
-Se contará con un tiempo de 5 segundos en el que se deberá recordar la posición de cada imagen, luego de esto, las imagenes se desorganizarán y usted tendrá que seleccionar cada imagen junto con el recuadro que corresponde a la posición en la que se encontraba inicialmente.
-Si la posicion seleccionada para la figura es correcta, la imagen aparecera en el recuadro.
+Se contará con un tiempo de 5 segundos en el que se deberá recordar la posición de cada imagen, luego de esto, las imágenes se desorganizarán y usted tendrá que seleccionar cada imágen junto con el recuadro que corresponde a la posición en la que se encontraba inicialmente.
+Si la posición seleccionada para la figura es correcta, la imágen aparecerá en el recuadro.
 
-La ronda termina cuando se ubican todas las imagenes.
+La ronda termina cuando se ubican todas las imágenes.
 
 Tiene un minuto para completar la mayor cantidad de rondas posible.
