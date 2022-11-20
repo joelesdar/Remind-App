@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -32,12 +31,14 @@ public class pictureGameScreen extends AppCompatActivity {
     ImageView image1, image2, image3, image4;
     ImageButton botonP1, botonP2, botonP3, botonP4, botonA1, botonA2, botonA3, botonA4;
     TextView time, PuntuacionPicture, tiempoJuego;
-    Button instrucciones;
+    Button instrucciones, reset;
 
     int parejasRestantes;
     int puntuacion=0;
     long segs = 5000;
     long tiempo = 60000;
+    CountDownTimer contadorRonda;
+    CountDownTimer contadorJuego;
 
     ArrayList<ImageButton> botonesDisponiblesP = new ArrayList<ImageButton>();
     ArrayList<ImageButton> botonesDisponiblesA = new ArrayList<ImageButton>();
@@ -50,6 +51,46 @@ public class pictureGameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_picture_game_screen);
         getSupportActionBar().hide();
 
+        instrucciones = findViewById(R.id.botonInstruccionesPicture2);
+        reset = findViewById(R.id.botonReinicioPicture);
+
+        startPicture();
+
+        /** Mostrar las instrucciones **/
+        instrucciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarInstrucciones();
+            }
+        });
+
+        /** Reiniciar el juego**/
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PuntuacionPicture.setText("Puntuación: 0");
+                mostrarP();
+                esconderA();
+                contadorRonda.cancel();
+                contadorJuego.cancel();
+                startPicture();
+                System.out.println("Reiniciar nivel");
+            }
+        });
+    }
+
+    /** Inicializar el juego **/
+    private void startPicture () {
+
+        puntuacion=0;
+        segs = 6000;
+        tiempo = 60000;
+
+        botonesDisponiblesP.clear();
+        botonesDisponiblesA.clear();
+        combinacionBotones.clear();
+        fondos.clear();
+
         /**Fondos grises para el juego**/
         image1 = (ImageView) findViewById(R.id.imagen1);
         image2 = (ImageView) findViewById(R.id.imagen2);
@@ -60,8 +101,6 @@ public class pictureGameScreen extends AppCompatActivity {
         tiempoJuego = (TextView) findViewById(R.id.tiempoJuego);
 
         PuntuacionPicture = (TextView) findViewById(R.id.PuntuacionPicture);
-
-        instrucciones = findViewById(R.id.botonInstruccionesPicture2);
 
         /**Todos los botones que se van a usar en el juego**/
         botonP1 = (ImageButton) findViewById(R.id.imageButtonP1);
@@ -228,12 +267,6 @@ public class pictureGameScreen extends AppCompatActivity {
                 }
             }
         });
-        instrucciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarInstrucciones();
-            }
-        });
     }
 
     /** Seleccion de imagenes aleatorias **/
@@ -318,7 +351,8 @@ public class pictureGameScreen extends AppCompatActivity {
 
     /**Temporizador partida**/
     private void IniciarTiempoJuego(){
-        CountDownTimer contador = new CountDownTimer(tiempo, 1000) {
+
+        contadorJuego = new CountDownTimer(tiempo, 1000) {
             @Override
             public void onTick(long l) {
                 long tiempo = l;
@@ -336,7 +370,7 @@ public class pictureGameScreen extends AppCompatActivity {
 
     /**Temporizador ronda**/
     private void IniciarTiempo(){
-        CountDownTimer contador = new CountDownTimer(segs, 1000) {
+        contadorRonda = new CountDownTimer(segs, 1000) {
             @Override
             public void onTick(long l) {
                 long tiempo = l;
