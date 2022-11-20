@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         botonInstrucciones = findViewById(R.id.botonInstrucciones);
         botonVideo = findViewById(R.id.botonVideoguia);
         imbSalir = findViewById(R.id.botonMainAtras);
+//        textoMaxPuntuacion = findViewById(R.id.maximaPuntuacionPicture);
+//        textoUltPuntuacion = findViewById(R.id.ultimaPuntuacionPicture);
 
         //Funcionalidad botones
         botonJugar.setOnClickListener(new View.OnClickListener() {

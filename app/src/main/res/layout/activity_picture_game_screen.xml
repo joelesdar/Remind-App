@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8892F7"
-    tools:context=".picture.pictureGameScreen">
+    tools:context=".Juego$pictureGameScreen">
 
     <ImageButton
         android:id="@+id/botonJuegoAtras"

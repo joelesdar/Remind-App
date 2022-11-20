@@ -1,10 +1,9 @@
-package com.example.remind_app.picture;
+package com.example.remind_app;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -15,14 +14,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.remind_app.Picture;
-import com.example.remind_app.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -37,18 +40,27 @@ public class pictureGameScreen extends AppCompatActivity {
     int parejasRestantes;
     int puntuacion=0;
     long segs = 5000;
-    long tiempo = 60000;
+    long tiempo = 10000;
+    int puntuacionMaxima, ultimaPuntuacion;
+    String puntuacionString;
+    int racha = 1;
 
     ArrayList<ImageButton> botonesDisponiblesP = new ArrayList<ImageButton>();
     ArrayList<ImageButton> botonesDisponiblesA = new ArrayList<ImageButton>();
     ArrayList<ImageButton> combinacionBotones = new ArrayList<ImageButton>();
     ArrayList<ImageView> fondos = new ArrayList<ImageView>();
 
+    //Firebase
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_game_screen);
         getSupportActionBar().hide();
+        establecerPuntuacionMaxima();
+        System.out.println(mAuth.getCurrentUser().getEmail());
 
         /**Fondos grises para el juego**/
         image1 = (ImageView) findViewById(R.id.imagen1);
@@ -132,13 +144,15 @@ public class pictureGameScreen extends AppCompatActivity {
             public void onClick(View view) {
                 combinacionBotones.add(botonP1);
                 if(combinacionBotones.get(0).getTag().equals(combinacionBotones.get(1).getTag())) {
-                    puntuacion+=50;
+                    puntuacion+=50*racha;
+                    racha++;
                     parejasRestantes--;
                     establecerBien();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
                     image1.setVisibility(View.INVISIBLE);
 
                 }else{
+                    racha=1;
                     puntuacion-=25;
                     establecerMal();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
@@ -158,12 +172,14 @@ public class pictureGameScreen extends AppCompatActivity {
             public void onClick(View view) {
                 combinacionBotones.add(botonP2);
                 if(combinacionBotones.get(0).getTag().equals(combinacionBotones.get(1).getTag())){
-                    puntuacion+=50;
+                    puntuacion+=50*racha;
+                    racha++;
                     parejasRestantes--;
                     establecerBien();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
                     image2.setVisibility(View.INVISIBLE);
                 }else{
+                    racha=1;
                     puntuacion-=25;
                     establecerMal();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
@@ -183,12 +199,14 @@ public class pictureGameScreen extends AppCompatActivity {
             public void onClick(View view) {
                 combinacionBotones.add(botonP3);
                 if(combinacionBotones.get(0).getTag().equals(combinacionBotones.get(1).getTag())){
-                    puntuacion+=50;
+                    puntuacion+=50*racha;
+                    racha++;
                     parejasRestantes--;
                     establecerBien();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
                     image3.setVisibility(View.INVISIBLE);
                 }else{
+                    racha=1;
                     puntuacion-=25;
                     establecerMal();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
@@ -208,12 +226,14 @@ public class pictureGameScreen extends AppCompatActivity {
             public void onClick(View view) {
                 combinacionBotones.add(botonP4);
                 if(combinacionBotones.get(0).getTag().equals(combinacionBotones.get(1).getTag())){
-                    puntuacion+=50;
+                    puntuacion+=50*racha;
+                    racha++;
                     parejasRestantes--;
                     establecerBien();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
                     image4.setVisibility(View.INVISIBLE);
                 }else{
+                    racha=1;
                     puntuacion-=25;
                     establecerMal();
                     PuntuacionPicture.setText("Puntuación: " + puntuacion);
@@ -297,21 +317,21 @@ public class pictureGameScreen extends AppCompatActivity {
         for (int cantidad = 4; cantidad > 0; cantidad--){
             switch (cantidad) {
                 case 1: botonA1.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA1.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA1.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 2: botonA2.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA2.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA2.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 3: botonA3.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA3.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA3.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 4: botonA4.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA4.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA4.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
             }
         }
     }
@@ -450,8 +470,9 @@ public class pictureGameScreen extends AppCompatActivity {
 
     /**Funcion para mostrar resultado al final de la partida**/
     public void mostrarResultadoPartida(){
+        establecerPuntuaciones();
         AlertDialog.Builder resultado = new AlertDialog.Builder(pictureGameScreen.this);
-        resultado.setMessage("¡Felicidades, has obtenido "+puntuacion+" puntos!")
+        resultado.setMessage(establecerMensaje(puntuacion,puntuacionMaxima))
                 .setCancelable(false)
                 .setPositiveButton("Volver al inicio", new DialogInterface.OnClickListener() {
                     @Override
@@ -464,6 +485,47 @@ public class pictureGameScreen extends AppCompatActivity {
         AlertDialog titulo = resultado.create();
         titulo.setTitle("PICTURE");
         titulo.show();
+    }
+
+    public void establecerPuntuaciones(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Map<String, Object> Puntuaciones = new HashMap<>();
+                    if(puntuacion>puntuacionMaxima){
+                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
+                    }else{
+                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
+                    }
+                    Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
+                    db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").set(Puntuaciones);
+                }
+            }
+        );
+    }
+
+    public void establecerPuntuacionMaxima(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()){
+                        String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
+                        puntuacionMaxima = Integer.parseInt(MaxPuntuacion);
+                    }
+                }
+        });
+    }
+
+    public String establecerMensaje(int puntuacion, int puntuacionMaxima){
+        String mensaje;
+        if(puntuacion>puntuacionMaxima){
+            mensaje = "¡Felicidades, has superado tu puntuación maxima, has llegado a los "+puntuacion+" puntos!";
+        }else if(puntuacion>0){
+            mensaje = "¡Felicidades, has obtenido "+puntuacion+" puntos!";
+        }else{
+            mensaje = "Has obtenido "+puntuacion+" puntos, vuelve a jugar";
+        }
+        return mensaje;
     }
 
     /** Mostrar las instrucciones del juego**/
