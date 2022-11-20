@@ -1,6 +1,7 @@
 package com.example.remind_app;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.remind_app.picture.pictureGameScreen;
+import com.example.remind_app.picture.videoGuia;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,7 @@ import java.util.Scanner;
 public class Picture extends AppCompatActivity {
 
     Button instrucciones, video;
+    Context contexto = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +40,13 @@ public class Picture extends AppCompatActivity {
             }
         });
 
-        video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Mostrar Video Guía...");
-            }
-        });
+//        video.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                new pictureVideoGuia(contexto);
+//                System.out.println("Mostrar Video Guía...");
+//            }
+//        });
 
     }
 
@@ -93,5 +97,13 @@ public class Picture extends AppCompatActivity {
         is.close();
         return sInstrucciones;
     }
+
+    /** Funcion para ingresar al juego twins */
+    public void Ingresoguia(View view) {
+        Intent guia = new Intent (this, videoGuia.class);
+        startActivity(guia);
+    }
+
+
 
 }
