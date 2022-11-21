@@ -72,6 +72,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/Complementary"
         android:fontFamily="@font/pacifico"
+        android:onClick="IngresoProfile"
         android:textColor="@color/Alert"
         android:textSize="16sp"
         app:icon="@drawable/profile"

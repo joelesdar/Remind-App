@@ -117,4 +117,6 @@ dependencies {
     // Declare the dependency for the Cloud Firestore library
     implementation 'com.google.firebase:firebase-firestore'
 
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+
 }

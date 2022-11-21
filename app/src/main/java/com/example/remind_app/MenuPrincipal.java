@@ -32,4 +32,10 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent twinsGame = new Intent (this, MainActivity.class);
         startActivity(twinsGame);
     }
+
+    /** Funcion para ingresar al perfil */
+    public void IngresoProfile(View view) {
+        Intent perfil = new Intent (this, Profile.class);
+        startActivity(perfil);
+    }
 }
