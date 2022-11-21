@@ -12,6 +12,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.remind_app.twins.videoGuia;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
     //Variables menuJuego
     Button botonJugar, botonInstrucciones, botonVideo;
     ImageButton imbSalir;
-    TextView textoMaxPuntuacion, textoUltPuntuacion;
+    TextView puntuacionMaxima, ultimaPuntuacion;
+
+    //Firebase
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         botonInstrucciones = findViewById(R.id.botonInstrucciones);
         botonVideo = findViewById(R.id.botonVideoguia);
         imbSalir = findViewById(R.id.botonMainAtras);
+
+        puntuacionMaxima = findViewById(R.id.maximaPuntuacion);
+        ultimaPuntuacion = findViewById(R.id.ultimaPuntuacion);
+
+        mostrarPuntuaciones();
 
         //Funcionalidad botones
         botonJugar.setOnClickListener(new View.OnClickListener() {
@@ -54,14 +67,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        imbSalir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Volviendo a pantalla principal (SALIR)...");
-                finish();
-            }
-        });
+//        imbSalir.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("Volviendo a pantalla principal (SALIR)...");
+//                finish();
+//            }
+//        });
     }
+    public void mostrarPuntuaciones(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+              @Override
+              public void onSuccess(DocumentSnapshot documentSnapshot) {
+                  if(documentSnapshot.exists()){
+                      String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
+                      String UltPuntuacion = documentSnapshot.getString("UltimaPuntuacion");
+                      puntuacionMaxima.setText("Maxima puntuación: "+ MaxPuntuacion);
+                      ultimaPuntuacion.setText("Ultima puntuación: "+ UltPuntuacion);
+                  }
+              }
+          }
+        );
+        System.out.println(mAuth.getCurrentUser().getEmail());
+    }
+
     public void mostrarInstrucciones(){
         String instruccionesLeidas = new String();
         try {

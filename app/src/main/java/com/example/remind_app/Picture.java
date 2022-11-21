@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.remind_app.picture.pictureGameScreen;
 import com.example.remind_app.picture.videoGuia;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +26,9 @@ import java.util.Scanner;
 public class Picture extends AppCompatActivity {
 
     Button instrucciones, video;
+    TextView puntuacionMaxima, ultimaPuntuacion;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     Context contexto = this;
 
     @Override
@@ -31,6 +39,11 @@ public class Picture extends AppCompatActivity {
 
         instrucciones = findViewById(R.id.botonInstruccionesPicture);
         video = findViewById(R.id.botonVideoguiaPicture);
+
+        puntuacionMaxima = findViewById(R.id.maximaPuntuacionPicture);
+        ultimaPuntuacion = findViewById(R.id.ultimaPuntuacionPicture);
+
+        mostrarPuntuaciones();
 
         instrucciones.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +65,23 @@ public class Picture extends AppCompatActivity {
     public void IngresoJuegoPicture (View view) {
         Intent game = new Intent (this, pictureGameScreen.class);
         startActivity(game);
+    }
+
+    public void mostrarPuntuaciones(){
+        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
+            {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()){
+                        String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
+                        String UltPuntuacion = documentSnapshot.getString("UltimaPuntuacion");
+                        puntuacionMaxima.setText("Maxima puntuación: "+ MaxPuntuacion);
+                        ultimaPuntuacion.setText("Ultima puntuación: "+ UltPuntuacion);
+                    }
+                }
+            }
+);
+        System.out.println(mAuth.getCurrentUser().getEmail());
     }
 
     /** Mostrar las instrucciones del juego**/

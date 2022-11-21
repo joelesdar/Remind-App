@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,6 +20,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RemindMain extends AppCompatActivity {
 
@@ -26,6 +32,7 @@ public class RemindMain extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /*Crea la pantalla y inicializa los metodos de inicio de sesion que Google puede usar*/
     @Override
@@ -55,7 +62,6 @@ public class RemindMain extends AppCompatActivity {
         System.out.println(requestCode + " " + RC_SIGN_IN);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            System.out.println("Aqui");
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
@@ -76,10 +82,15 @@ public class RemindMain extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Map<String, Object> DatosUsuario = new HashMap<>();
+                            DatosUsuario.put("Correo", user.getEmail());
+                            DatosUsuario.put("Nombre", user.getDisplayName());
+                            db.collection("Usuario").document(user.getEmail()).set(DatosUsuario);
+                            System.out.println("Correo: "+ user.getEmail());
+                            System.out.println("Nombre: "+ user.getDisplayName());
                             updateUI(user);
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
                         }
                     }
                 });

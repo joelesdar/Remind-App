@@ -15,11 +15,12 @@
         android:background="@color/moradoApp"
         android:backgroundTint="#8791F6"
         android:contentDescription="@string/botonAtras"
+        android:onClick="Regresar"
         android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/botonback"
-        tools:layout_editor_absoluteX="20dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp" />
 
     <TextView
         android:id="@+id/puntuacion"
