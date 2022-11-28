@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/moradoApp"
     tools:context=".Picture">
 
     <ImageView
         android:id="@+id/brainFondo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:alpha="0.4"
+        android:alpha="0.2"
         android:background="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,16 +26,17 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="19dp"
         android:layout_marginBottom="68dp"
         android:contentDescription="@string/botonAtras"
         android:onClick="Regresar"
         app:layout_constraintBottom_toTopOf="@+id/botonJugarPicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/backverde"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="22dp" />
+        app:srcCompat="@mipmap/botonback"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/botonJugarPicture"
@@ -86,13 +88,14 @@
             android:backgroundTint="@color/verdementaApp"
             android:baselineAligned="false"
             android:fontFamily="@font/pacifico"
+            android:onClick="Ingresoguia"
             android:text="@string/botonVideo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/botonInstruccionesPicture"
+            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.504" />
 
         <Button
             android:id="@+id/botonInstruccionesPicture"
@@ -102,26 +105,28 @@
             android:fontFamily="@font/pacifico"
             android:text="@string/botonInstrucciones"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/botonVideoguiaPicture"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.504" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tituloPicture"
-        android:layout_width="213dp"
-        android:layout_height="99dp"
+        android:layout_width="301dp"
+        android:layout_height="147dp"
         android:fontFamily="@font/pacifico"
         android:text="Picture"
         android:textColor="@color/verdementaApp"
-        android:textSize="60sp"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/botonMainAtras"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="19dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -142,7 +147,7 @@
             android:text="Puntuación máxima: 0"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/ultimaPuntuacionPicture"
@@ -151,7 +156,7 @@
             android:text="Última puntuación: 0"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

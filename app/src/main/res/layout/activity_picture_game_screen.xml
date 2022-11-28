@@ -5,29 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8892F7"
-    tools:context=".Juego$pictureGameScreen">
+    tools:context=".picture.pictureGameScreen">
+
+    <Button
+        android:id="@+id/botonReinicioPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/verdementaApp"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/reiniciar"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonA2"
+        app:layout_constraintVertical_bias="0.058" />
 
     <ImageButton
         android:id="@+id/botonJuegoAtras"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
         android:background="@color/moradoApp"
         android:contentDescription="@string/botonAtras"
         android:onClick="RegresoPicture"
         android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/backverde"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="20dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tiempoJuego"
-        android:layout_width="65dp"
-        android:layout_height="25dp"
+        android:layout_width="67dp"
+        android:layout_height="33dp"
         android:text="60"
         android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,32 +57,34 @@
 
     <TextView
         android:id="@+id/tituloPicture"
-        android:layout_width="216dp"
-        android:layout_height="100dp"
+        android:layout_width="192dp"
+        android:layout_height="101dp"
         android:fontFamily="@font/pacifico"
         android:text="Picture"
         android:textColor="@color/verdementaApp"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/PuntuacionPicture"
-        android:layout_width="233dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="56dp"
+        android:layout_width="201dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/pacifico"
         android:text="Puntuación: 0"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/verdementaApp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.181" />
 
     <TextView
         android:id="@+id/gameTime"
@@ -87,6 +108,7 @@
         android:backgroundTint="@color/verdementaApp"
         android:baselineAligned="false"
         android:fontFamily="@font/pacifico"
+        android:onClick="Ingresoguia"
         android:text="@string/botonVideo"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -122,10 +144,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.199"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPicture"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
         tools:srcCompat="@drawable/googlepay_button_overlay"
         tools:visibility="invisible" />
 
@@ -140,10 +162,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.839"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPicture"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
         tools:srcCompat="@drawable/googlepay_button_overlay"
         tools:visibility="invisible" />
 
@@ -289,10 +311,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.199"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPicture"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
         app:srcCompat="@drawable/googlepay_button_overlay"
         tools:srcCompat="@drawable/googlepay_button_overlay"
         tools:visibility="visible" />
@@ -307,10 +329,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.839"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPicture"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
         app:srcCompat="@drawable/googlepay_button_overlay"
         tools:srcCompat="@drawable/googlepay_button_overlay"
         tools:visibility="visible" />

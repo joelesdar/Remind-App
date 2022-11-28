@@ -1,37 +1,37 @@
 package com.example.remind_app;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.remind_app.picture.pictureGameScreen;
+import com.example.remind_app.twins.videoGuia;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Juego extends MainActivity {
 
@@ -46,7 +46,7 @@ public class Juego extends MainActivity {
     int puntuacionMaxima;
     boolean isOn = false;
     Thread cronometro;
-    int mili=0,min=0,seg=0, racha=1;
+    int mili=0,min=0,seg=0,racha=1;
     Handler h = new Handler();
 
     //Imagenes
@@ -69,7 +69,32 @@ public class Juego extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego);
         establecerPuntuacionMaxima();
+        getSupportActionBar().hide();
         iniciar();
+        botonVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(Juego.this);// add here your class name
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.activity_video_guia);//add your own xml with defied with and height of videoview
+                dialog.show();
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                final VideoView videoPicture = (VideoView) dialog.findViewById(R.id.guiapicture);
+                Uri uriPath= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiatwins);
+                videoPicture.setVideoURI(uriPath);
+                videoPicture.start();
+                /**Reinicia el video cuando se termina**/
+                videoPicture.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        videoPicture.start();
+                    }
+                });
+            }
+        });
     }
 
     //Carga funcinoal del tablero
@@ -134,14 +159,6 @@ public class Juego extends MainActivity {
                 mili = seg = min= 0;
                 tiempo.setText("Tiempo: 00:00");
                 System.out.println("Reiniciar nivel");
-            }
-        });
-
-        imbAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                System.out.println("Salir de la pantalla del juego");
             }
         });
 
@@ -350,18 +367,18 @@ public class Juego extends MainActivity {
 
     public void establecerPuntuaciones(){
         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Map<String, Object> Puntuaciones = new HashMap<>();
-                    if(puntuacion>puntuacionMaxima){
-                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
-                    }else{
-                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
-                    }
-                    Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
-                    db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").set(Puntuaciones);
-                }
-            }
+              @Override
+              public void onSuccess(DocumentSnapshot documentSnapshot) {
+                  Map<String, Object> Puntuaciones = new HashMap<>();
+                  if(puntuacion>puntuacionMaxima){
+                      Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
+                  }else{
+                      Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
+                  }
+                  Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
+                  db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Twins").set(Puntuaciones);
+              }
+          }
         );
     }
 
@@ -421,4 +438,17 @@ public class Juego extends MainActivity {
             });
         }
     }
+
+    /** Funcion visualizar el video guia */
+    public void Ingresoguia(View view) {
+        Intent guia = new Intent (this, videoGuia.class);
+        startActivity(guia);
+    }
+
+    /** Regresar al menu **/
+    public void Regresar (View view) {
+        Intent menu = new Intent (this, MainActivity.class);
+        startActivity(menu);
+    }
+
 }

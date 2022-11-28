@@ -1,7 +1,5 @@
 package com.example.remind_app;
 
-import static com.example.remind_app.Juego.mAuth;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,5 +31,11 @@ public class MenuPrincipal extends AppCompatActivity {
     public void IngresoTwins(View view) {
         Intent twinsGame = new Intent (this, MainActivity.class);
         startActivity(twinsGame);
+    }
+
+    /** Funcion para ingresar al perfil */
+    public void IngresoProfile(View view) {
+        Intent perfil = new Intent (this, Profile.class);
+        startActivity(perfil);
     }
 }
