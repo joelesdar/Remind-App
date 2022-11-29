@@ -103,7 +103,7 @@ public class RemindMain extends AppCompatActivity {
         if(user != null){
             Intent menu = new Intent (this, MenuPrincipal.class);
             startActivity(menu);
-            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            /*FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
                         @Override
                         public void onComplete(@NonNull Task<String> task) {
                             if (!task.isSuccessful()) {
@@ -119,13 +119,13 @@ public class RemindMain extends AppCompatActivity {
                             Log.d(TAG, msg);
                             Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });*/
         }
     }
 
     /* Funcion para ingresar a la aplicacion cuando se oprime el boton ingresar */
     public void Ingresar(View view) {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        //startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 }
