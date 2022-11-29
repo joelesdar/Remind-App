@@ -24,8 +24,8 @@
     <ImageButton
         android:id="@+id/botonMainAtras"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="56dp"
-        android:layout_height="64dp"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
         android:layout_marginTop="19dp"
         android:layout_marginBottom="68dp"
         android:contentDescription="@string/botonAtras"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.428"
-        app:srcCompat="@mipmap/backverde"
+        app:srcCompat="@mipmap/botonback"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -114,15 +114,15 @@
 
     <TextView
         android:id="@+id/tituloPicture"
-        android:layout_width="314dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="286dp"
+        android:layout_height="94dp"
         android:fontFamily="@font/pacifico"
         android:text="FollowMe"
+        android:textAlignment="center"
         android:textColor="@color/verdementaApp"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toEndOf="@+id/botonMainAtras"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="16dp" />

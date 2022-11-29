@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -143,8 +144,8 @@ public class Profile extends AppCompatActivity {
     /** SingOut **/
     public void CerrarSesión (View view) {
         GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN).signOut();
-
-
+        Toast toast = Toast.makeText(getApplicationContext(),"Se ha cerrado la sesión", Toast.LENGTH_SHORT);
+        toast.show();
         Intent login = new Intent (this, RemindMain.class);
         startActivity(login);
     }
