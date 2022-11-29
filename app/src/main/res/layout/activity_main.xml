@@ -24,28 +24,28 @@
         android:id="@+id/botonMainAtras"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="19dp"
         android:layout_marginBottom="68dp"
         android:background="@null"
         android:contentDescription="@string/botonAtras"
         android:onClick="Regresar"
         app:layout_constraintBottom_toTopOf="@+id/botonJugar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/botonback"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="22dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/botonJugar"
-        android:layout_width="354dp"
-        android:layout_height="79dp"
+        android:layout_width="356dp"
+        android:layout_height="90dp"
         android:background="@color/amarilloApp"
-        android:backgroundTintMode="add"
         android:fontFamily="@font/pacifico"
         android:includeFontPadding="false"
-        android:text="@string/botonJugar"
-        android:textColor="@color/rosaApp"
+        android:text="Jugar"
+        android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -86,15 +86,14 @@
             android:backgroundTint="@color/verdementaApp"
             android:baselineAligned="false"
             android:fontFamily="@font/pacifico"
-            android:onClick="Ingresoguia"
             android:text="@string/botonVideo"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/botonInstrucciones"
+            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.495" />
 
         <Button
             android:id="@+id/botonInstrucciones"
@@ -105,31 +104,33 @@
             android:text="@string/botonInstrucciones"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/botonVideoguia"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.495" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tituloTwins"
-        android:layout_width="220dp"
-        android:layout_height="147dp"
+        android:layout_width="253dp"
+        android:layout_height="131dp"
         android:fontFamily="@font/pacifico"
         android:text="Twins"
         android:textColor="@color/verdementaApp"
         android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/botonMainAtras"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="367dp"
+        android:layout_width="394dp"
         android:layout_height="97dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
@@ -146,7 +147,7 @@
             android:text="Puntuacion máxima: 0"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/ultimaPuntuacion"
@@ -155,7 +156,7 @@
             android:text="Última puntuación: 0"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
     </LinearLayout>
 
 

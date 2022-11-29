@@ -1,16 +1,22 @@
 package com.example.remind_app.picture;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,21 +36,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TimerTask;
 
 public class pictureGameScreen extends AppCompatActivity {
 
-    // Imagenes que se mostraran en pantalla
+    /**Imagenes y interactivos que se mostraran en pantalla**/
     ImageView image1, image2, image3, image4;
     ImageButton botonP1, botonP2, botonP3, botonP4, botonA1, botonA2, botonA3, botonA4;
     TextView time, PuntuacionPicture, tiempoJuego;
-    Button instrucciones, reset;
+    Button instrucciones, reset, botonVideo;
 
     int parejasRestantes;
     int puntuacion=0;
     long segs = 5000;
     long tiempo = 60000;
-    int puntuacionMaxima, ultimaPuntuacion;
-    String puntuacionString;
+    int puntuacionMaxima;
     int racha = 1;
     CountDownTimer contadorRonda;
     CountDownTimer contadorJuego;
@@ -54,7 +60,7 @@ public class pictureGameScreen extends AppCompatActivity {
     ArrayList<ImageButton> combinacionBotones = new ArrayList<ImageButton>();
     ArrayList<ImageView> fondos = new ArrayList<ImageView>();
 
-    //Firebase
+    /**Firebase**/
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -64,10 +70,10 @@ public class pictureGameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_picture_game_screen);
         getSupportActionBar().hide();
         establecerPuntuacionMaxima();
-        System.out.println(mAuth.getCurrentUser().getEmail());
 
         instrucciones = findViewById(R.id.botonInstruccionesPicture2);
         reset = findViewById(R.id.botonReinicioPicture);
+        botonVideo = findViewById(R.id.botonVideoguia);
 
         startPicture();
 
@@ -90,6 +96,39 @@ public class pictureGameScreen extends AppCompatActivity {
                 contadorJuego.cancel();
                 startPicture();
                 System.out.println("Reiniciar nivel");
+            }
+        });
+
+        /**Listener para mostrar el video guia en un pop-up**/
+        botonVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(pictureGameScreen.this);// add here your class name
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.activity_video_guia);//add your own xml with defied with and height of videoview
+                dialog.show();
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                final VideoView videoPicture = (VideoView) dialog.findViewById(R.id.guiapicture);
+                Uri uriPath= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiapicture);
+                videoPicture.setVideoURI(uriPath);
+                System.out.println(videoPicture.isPlaying());
+                videoPicture.start();
+                TimerTask tiempo = new TimerTask() {
+                    @Override
+                    public void run() {
+
+                    }
+                };
+                /**Reinicia el video cuando se termina**/
+                videoPicture.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        videoPicture.start();
+                    };
+                });
             }
         });
     }
@@ -353,28 +392,27 @@ public class pictureGameScreen extends AppCompatActivity {
         for (int cantidad = 4; cantidad > 0; cantidad--){
             switch (cantidad) {
                 case 1: botonA1.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA1.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA1.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 2: botonA2.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA2.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA2.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 3: botonA3.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA3.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA3.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
                 case 4: botonA4.setImageResource(imagenesAbajo.get(cantidad-1));
-                botonA4.setTag(imagenesAbajo.get(cantidad-1));
-                imagenesAbajo.remove(cantidad-1);
-                break;
+                    botonA4.setTag(imagenesAbajo.get(cantidad-1));
+                    imagenesAbajo.remove(cantidad-1);
+                    break;
             }
         }
     }
 
     /**Temporizador partida**/
     private void IniciarTiempoJuego(){
-
         contadorJuego = new CountDownTimer(tiempo, 1000) {
             @Override
             public void onTick(long l) {
@@ -393,6 +431,7 @@ public class pictureGameScreen extends AppCompatActivity {
 
     /**Temporizador ronda**/
     private void IniciarTiempo(){
+        int decision=0;
         contadorRonda = new CountDownTimer(segs, 1000) {
             @Override
             public void onTick(long l) {
@@ -526,18 +565,18 @@ public class pictureGameScreen extends AppCompatActivity {
 
     public void establecerPuntuaciones(){
         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> Puntuaciones = new HashMap<>();
-                if(puntuacion>puntuacionMaxima){
-                    Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
-                }else{
-                    Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
-                }
-                Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
-                db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").set(Puntuaciones);
-            }
-        }
+                                                                                                                                                    @Override
+                                                                                                                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                                                                                        Map<String, Object> Puntuaciones = new HashMap<>();
+                                                                                                                                                        if(puntuacion>puntuacionMaxima){
+                                                                                                                                                            Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
+                                                                                                                                                        }else{
+                                                                                                                                                            Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
+                                                                                                                                                        }
+                                                                                                                                                        Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
+                                                                                                                                                        db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("Picture").set(Puntuaciones);
+                                                                                                                                                    }
+                                                                                                                                                }
         );
     }
 
@@ -601,9 +640,4 @@ public class pictureGameScreen extends AppCompatActivity {
         return sInstrucciones;
     }
 
-    /** Funcion visualizar el video guia */
-    public void Ingresoguia(View view) {
-        Intent guia = new Intent (this, videoGuia.class);
-        startActivity(guia);
-    }
 }

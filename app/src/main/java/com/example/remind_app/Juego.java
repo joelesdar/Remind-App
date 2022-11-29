@@ -1,20 +1,25 @@
 package com.example.remind_app;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 
-import com.example.remind_app.twins.videoGuia;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -64,6 +69,32 @@ public class Juego extends MainActivity {
         establecerPuntuacionMaxima();
         getSupportActionBar().hide();
         iniciar();
+
+        // Funcionaldiad del video guia
+        botonVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(Juego.this);// add here your class name
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.activity_video_guia);//add your own xml with defied with and height of videoview
+                dialog.show();
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                final VideoView videoPicture = (VideoView) dialog.findViewById(R.id.guiapicture);
+                Uri uriPath= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiatwins);
+                videoPicture.setVideoURI(uriPath);
+                videoPicture.start();
+                /**Reinicia el video cuando se termina**/
+                videoPicture.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        videoPicture.start();
+                    }
+                });
+            }
+        });
     }
 
     //Carga funcinoal del tablero
@@ -406,12 +437,6 @@ public class Juego extends MainActivity {
                 }
             });
         }
-    }
-
-    /** Funcion visualizar el video guia */
-    public void Ingresoguia(View view) {
-        Intent guia = new Intent (this, videoGuia.class);
-        startActivity(guia);
     }
 
     /** Regresar al menu **/

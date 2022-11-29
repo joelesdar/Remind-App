@@ -38,4 +38,10 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent perfil = new Intent (this, Profile.class);
         startActivity(perfil);
     }
+
+    /** Funcion para ingresar a extras */
+    public void IngresoExtras(View view) {
+        Intent extras = new Intent (this, Extras.class);
+        startActivity(extras);
+    }
 }
