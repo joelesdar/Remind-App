@@ -5,4 +5,6 @@ Si la posición seleccionada para la figura es correcta, la imágen aparecerá e
 
 La ronda termina cuando se ubican todas las imágenes.
 
+¡Mientras más parejas consecutivas encuentres, más puntos obtendras!
+
 Tiene un minuto para completar la mayor cantidad de rondas posible.

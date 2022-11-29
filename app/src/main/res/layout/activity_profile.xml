@@ -21,54 +21,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/brainverde" />
 
-    <TextView
-        android:id="@+id/puntajePicture"
-        android:layout_width="373dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/quicksand_medium"
-        android:text="Picture: 0"
-        android:textAlignment="textStart"
-        android:textColor="#FDFDFD"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.041" />
-
-    <TextView
-        android:id="@+id/puntajeFollowme"
-        android:layout_width="373dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/quicksand_medium"
-        android:text="Follow Me: 0"
-        android:textAlignment="textStart"
-        android:textColor="#FDFDFD"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/puntajeTwins"
-        app:layout_constraintVertical_bias="0.062" />
-
-    <TextView
-        android:id="@+id/puntajeTwins"
-        android:layout_width="373dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/quicksand_medium"
-        android:text="Twins: 0"
-        android:textAlignment="textStart"
-        android:textColor="#FDFDFD"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/puntajePicture"
-        app:layout_constraintVertical_bias="0.038" />
-
     <ImageButton
         android:id="@+id/botonAtras"
         style="?android:attr/borderlessButtonStyle"
@@ -137,23 +89,6 @@
         app:layout_constraintVertical_bias="0.025" />
 
     <TextView
-        android:id="@+id/puntajeTotal"
-        android:layout_width="378dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/quicksand_medium"
-        android:text="0 Puntos !"
-        android:textAlignment="center"
-        android:textColor="#EFEADA"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/puntajeFollowme"
-        app:layout_constraintVertical_bias="0.406" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="373dp"
         android:layout_height="43dp"
@@ -165,9 +100,82 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserName"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/puntajeFollowme"
+        android:layout_width="373dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Follow Me: 0"
+        android:textAlignment="textStart"
+        android:textColor="#FDFDFD"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntajeTwins"
+        app:layout_constraintVertical_bias="0.062" />
+
+    <TextView
+        android:id="@+id/puntajeTwins"
+        android:layout_width="373dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Twins: 0"
+        android:textAlignment="textStart"
+        android:textColor="#FDFDFD"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntajePicture"
+        app:layout_constraintVertical_bias="0.037" />
+
+    <TextView
+        android:id="@+id/puntajePicture"
+        android:layout_width="373dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Picture: 0"
+        android:textAlignment="textStart"
+        android:textColor="#FDFDFD"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <TextView
+        android:id="@+id/puntajeTotal"
+        android:layout_width="378dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="0 Puntos !"
+        android:textAlignment="center"
+        android:textColor="#EFEADA"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntajeFollowme"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <Button
+        android:id="@+id/BotonSesion"
+        android:layout_width="179dp"
+        android:layout_height="44dp"
+        android:onClick="CerrarSesión"
+        android:text="Cerrar sesión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/brainFondo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
