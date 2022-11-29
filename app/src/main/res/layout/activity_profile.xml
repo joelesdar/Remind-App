@@ -170,4 +170,16 @@
         app:layout_constraintTop_toBottomOf="@+id/UserNameJulien"
         app:layout_constraintVertical_bias="0.106" />
 
+    <Button
+        android:id="@+id/BotonSesion"
+        android:layout_width="179dp"
+        android:layout_height="44dp"
+        android:onClick="CerrarSesión"
+        android:text="Cerrar sesión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/brainFondo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

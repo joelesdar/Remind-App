@@ -6,10 +6,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,9 +30,11 @@ public class Profile extends AppCompatActivity {
 
     CircleImageView imagenPerfil;
     TextView userName, puntuacionPicture, puntuacionTwins, puntuacionFollowme, puntuacionTotal;
+    Button botonSesion;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private GoogleSignInClient mGoogleSignInClient;
 
     int totalPoints = 0;
 
@@ -47,6 +53,7 @@ public class Profile extends AppCompatActivity {
         puntuacionTwins = (TextView) findViewById(R.id.puntajeTwins);
         puntuacionFollowme = (TextView) findViewById(R.id.puntajeFollowme);
         puntuacionTotal = (TextView) findViewById(R.id.puntajeTotal);
+        botonSesion = (Button) findViewById(R.id.BotonSesion);
 
         // Obtener el nombre de usuario
         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>()
@@ -131,5 +138,14 @@ public class Profile extends AppCompatActivity {
     public void Regresar (View view) {
         Intent menu = new Intent (this, MenuPrincipal.class);
         startActivity(menu);
+    }
+
+    /** SingOut **/
+    public void CerrarSesión (View view) {
+        GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN).signOut();
+
+
+        Intent login = new Intent (this, RemindMain.class);
+        startActivity(login);
     }
 }
