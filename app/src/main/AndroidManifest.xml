@@ -19,6 +19,12 @@
             android:name=".Extras"
             android:exported="true" />
         <activity
+            android:name=".followMe"
+            android:exported="true" />
+        <activity
+            android:name=".followMeGameScreen"
+            android:exported="true" />
+        <activity
             android:name=".Profile"
             android:exported="true" />
         <activity

@@ -33,6 +33,12 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(twinsGame);
     }
 
+    /** Funcion para ingresar al juego followMe */
+    public void IngresoFollowMe(View view) {
+        Intent followMe = new Intent (this, followMe.class);
+        startActivity(followMe);
+    }
+
     /** Funcion para ingresar al perfil */
     public void IngresoProfile(View view) {
         Intent perfil = new Intent (this, Profile.class);

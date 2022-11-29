@@ -54,6 +54,7 @@
         android:layout_height="144dp"
         android:background="@color/Complementary"
         android:fontFamily="@font/pacifico"
+        android:onClick="IngresoFollowMe"
         android:text="Follow me"
         android:textColor="@color/Alert"
         android:textSize="16sp"
