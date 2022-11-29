@@ -1,0 +1,5 @@
+El juego consiste en memorizar la ubicación de cuatro imágenes diferentes.
+
+Se contará con un límite de tiempo en el que se deberá recordar la posición de cada imagen, luego de esto, las imagenes se desorganizarán y tendrán que ser arrastradas nuevamente a la posición en la que se encontraban al inicio.
+
+La ronda termina cuando se ubican todas las imagenes.

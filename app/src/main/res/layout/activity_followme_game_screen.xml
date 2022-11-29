@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8892F7"
+    tools:context=".Juego$pictureGameScreen">
+
+    <ImageButton
+        android:id="@+id/botonJuegoAtras"
+        android:layout_width="73dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/moradoApp"
+        android:contentDescription="@string/botonAtras"
+        android:onClick="RegresoPicture"
+        android:scaleType="center"
+        app:layout_constraintEnd_toStartOf="@+id/tituloPicture"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/backverde"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tiempoJuego"
+        android:layout_width="65dp"
+        android:layout_height="25dp"
+        android:text="60"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007" />
+
+    <TextView
+        android:id="@+id/tituloPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:fontFamily="@font/pacifico"
+        android:text="FollowMe"
+        android:textColor="@color/verdementaApp"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/botonJuegoAtras"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/PuntuacionFollowMe"
+        android:layout_width="233dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="56dp"
+        android:text="Puntuación: 0"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <TextView
+        android:id="@+id/gameTime"
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:text="Tiempo restante:"
+        android:textAlignment="center"
+        android:textColor="#F1EDED"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/botonVideoguia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/verdementaApp"
+        android:baselineAligned="false"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/botonVideo"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/botonInstruccionesPicture2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934" />
+
+    <Button
+        android:id="@+id/botonInstruccionesPicture2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/verdementaApp"
+        android:fontFamily="@font/pacifico"
+        android:text="@string/botonInstrucciones"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonVideoguia"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/partituratransparente"
+        app:layout_constraintBottom_toBottomOf="@+id/gameTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.841" />
+
+    <ImageButton
+        android:id="@+id/b0"
+        android:layout_width="91dp"
+        android:layout_height="98dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="clickNota"
+        android:scaleType="fitCenter"
+        android:src="@drawable/picturefigura2"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/b1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853" />
+
+    <ImageButton
+        android:id="@+id/b1"
+        android:layout_width="91dp"
+        android:layout_height="98dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="clickNota"
+        android:scaleType="fitCenter"
+        android:src="@drawable/picturefigura4"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/b2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853" />
+
+    <ImageButton
+        android:id="@+id/b2"
+        android:layout_width="91dp"
+        android:layout_height="98dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="clickNota"
+        android:scaleType="fitCenter"
+        android:src="@drawable/picturefigura3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/b3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.854" />
+
+    <ImageButton
+        android:id="@+id/b3"
+        android:layout_width="91dp"
+        android:layout_height="98dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="clickNota"
+        android:scaleType="fitCenter"
+        android:src="@drawable/picturefigura6"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.854" />
+
+    <ImageView
+        android:id="@+id/fondoBlancoTeclado"
+        android:layout_width="294dp"
+        android:layout_height="273dp"
+        android:background="#FAF4E3"
+        android:backgroundTint="#FFFFFF"
+        android:src="@drawable/googlepay_button_overlay"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/gameTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <ImageView
+        android:id="@+id/t0"
+        android:layout_width="72dp"
+        android:layout_height="277dp"
+        android:background="#00F7FF"
+        android:src="@drawable/googlepay_button_overlay"
+        android:tint="#00FFFB00"
+        android:tintMode="screen"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321" />
+
+    <ImageView
+        android:id="@+id/t1"
+        android:layout_width="70dp"
+        android:layout_height="279dp"
+        android:background="#00F7FF"
+        android:src="@drawable/googlepay_button_overlay"
+        android:tint="#00FFFB00"
+        android:tintMode="screen"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/t2"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toEndOf="@+id/t0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <ImageView
+        android:id="@+id/t2"
+        android:layout_width="72dp"
+        android:layout_height="274dp"
+        android:background="#00F7FF"
+        android:src="@drawable/googlepay_button_overlay"
+        android:tint="#00FFFB00"
+        android:tintMode="screen"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/t3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/t0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321" />
+
+    <ImageView
+        android:id="@+id/t3"
+        android:layout_width="79dp"
+        android:layout_height="279dp"
+        android:background="#00F7FF"
+        android:src="@drawable/googlepay_button_overlay"
+        android:tint="#00FFFB00"
+        android:tintMode="screen"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toEndOf="@+id/t0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <ImageView
+        android:id="@+id/teclado"
+        android:layout_width="307dp"
+        android:layout_height="308dp"
+        android:background="#00F1F9FF"
+        android:clickable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304"
+        app:srcCompat="@drawable/teclado_transparente"
+        tools:srcCompat="@drawable/teclado_transparente"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textB0"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
+
+    <TextView
+        android:id="@+id/textB1"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
+
+    <TextView
+        android:id="@+id/textB2"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.843" />
+
+    <TextView
+        android:id="@+id/textB3"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
+
+    <TextView
+        android:id="@+id/textS0"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textEmp"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textEmp"
+        android:layout_width="30dp"
+        android:layout_height="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS0"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textS6"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS5"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textS5"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS4"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textS4"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS3"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textS3"
+        android:layout_width="52dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS2"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textS2"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS1"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.507" />
+
+    <TextView
+        android:id="@+id/textS1"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/textS2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textS0"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <TextView
+        android:id="@+id/textT0"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/verdementaApp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textT1"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/verdementaApp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textT2"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/Secondary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textT3"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/pacifico"
+        android:text="TextView"
+        android:textColor="@color/Secondary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/bj"
+        android:layout_width="41dp"
+        android:layout_height="42dp"
+        android:onClick="turnoJugador"
+        android:src="@android:drawable/ic_menu_myplaces"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/bm"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="428dp"
+        android:onClick="turnoMaquina"
+        android:src="@drawable/ic_launcher_foreground"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/bc"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="388dp"
+        android:onClick="comprobar"
+        android:src="@android:drawable/checkbox_on_background"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bm" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
