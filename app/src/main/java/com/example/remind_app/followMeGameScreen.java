@@ -2,19 +2,26 @@ package com.example.remind_app;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.remind_app.picture.pictureGameScreen;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,14 +35,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TimerTask;
 
 public class followMeGameScreen extends AppCompatActivity {
 
     // Imagenes que se mostraran en pantalla
-    ImageView image1, image2, image3, image4;
+    ImageView image1, image2, image3, image4, t0, t1, t2, t3;
     ImageButton b0, b1, b2, b3, bj, bm, bc;
     TextView time, PuntuacionFollowMe, tiempoJuego, textT0, textT1, textT2, textT3, textB0, textB1, textB2, textB3, textS0, textS1, textS2, textS3, textS4, textS5, textS6, textEmp;
-    Button instrucciones;
+    Button instrucciones, botonVideo;
 
     int puntuacion=0;
     long segs = 5000;
@@ -53,10 +61,10 @@ public class followMeGameScreen extends AppCompatActivity {
     Integer[] notasid = {8,8,8,8};
     String [] notas = {"","","",""};
     Handler h = new Handler();
-    int contadorM = 2;
+    int contadorM = 0;
     int contadorJ = 0;
     final Handler handler = new Handler();
-    int turno = 1;
+
 
 
     ArrayList<ImageButton> combinacionBotones = new ArrayList<ImageButton>();
@@ -75,9 +83,43 @@ public class followMeGameScreen extends AppCompatActivity {
         establecerPuntuacionMaxima();
         System.out.println(mAuth.getCurrentUser().getEmail());
 
-        //_________________________________________________________________________________________________________
-        /** Escoge las notas que se usarán en la partida **/
+        botonVideo = findViewById(R.id.botonVideoguia);
 
+        //_________________________________________________________________________________________________________
+        /**Listener para mostrar el video guia en un pop-up**/
+        botonVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(followMeGameScreen.this);// add here your class name
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.activity_video_guia);//add your own xml with defied with and height of videoview
+                dialog.show();
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                final VideoView videoPicture = (VideoView) dialog.findViewById(R.id.guiapicture);
+                Uri uriPath= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoguiafollowme);
+                videoPicture.setVideoURI(uriPath);
+                System.out.println(videoPicture.isPlaying());
+                videoPicture.start();
+                TimerTask tiempo = new TimerTask() {
+                    @Override
+                    public void run() {
+
+                    }
+                };
+                /**Reinicia el video cuando se termina**/
+                videoPicture.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        videoPicture.start();
+                    };
+                });
+            }
+        });
+
+        /** Escoge las notas que se usarán en la partida **/
 
         int n = (int)(Math.random()*7);
         notasid[0] = n;
@@ -133,6 +175,7 @@ public class followMeGameScreen extends AppCompatActivity {
                 R.id.b0, R.id.b1, R.id.b2, R.id.b3
         };
 
+
         textS0 = (TextView) findViewById(R.id.textS0);
         textS1 = (TextView) findViewById(R.id.textS1);
         textS2 = (TextView) findViewById(R.id.textS2);
@@ -143,11 +186,14 @@ public class followMeGameScreen extends AppCompatActivity {
         textEmp = (TextView) findViewById(R.id.textEmp); // este solo se usa para organizar los otros en el front end
 
         notasImpresas = new Integer[]{
-               R.id.textS0,R.id.textS1,R.id.textS2,R.id.textS3,R.id.textS4,
+                R.id.textS0, R.id.textS1, R.id.textS2, R.id.textS3, R.id.textS4,
                 R.id.textS5, R.id.textS6
         }; //notas que se imprimen
 
-
+        t0 = (ImageView) findViewById(R.id.t0);
+        t1 = (ImageView) findViewById(R.id.t1);
+        t2 = (ImageView) findViewById(R.id.t2);
+        t3 = (ImageView) findViewById(R.id.t3);
 
         //_________________________________________________________________________________________________________
 
@@ -184,12 +230,12 @@ public class followMeGameScreen extends AppCompatActivity {
 
 
     public void clickNota(View v){
+
         int numBoton = Arrays.asList(botones).indexOf(v.getId());
 
-        if(contadorJ <= 6) {
-            notasJ[contadorJ] = notas[numBoton]; //esto evita que se exceda la cantidad de notas (7) y todo haga boom
+        if(contadorJ <= contadorM) {
+            notasJ[contadorJ] = notas[numBoton]; //esto evita que se exceda la cantidad de notas que se estan jugando y todo haga boom
         }
-
 
         //imprime las notas
         if(contadorJ == 0) {
@@ -215,6 +261,21 @@ public class followMeGameScreen extends AppCompatActivity {
         }
 
         contadorJ+=1;
+
+        //brillo en las teclas del teclado
+        brilloTecla(numBoton);
+
+        //sonido de las teclas
+        repNota(notas[numBoton]);
+
+    }
+
+    public void compTurnoMaquina(View v){
+        if(contadorM < 6){
+            turnoMaquina(v);
+        }else{
+            mostrarResultadoPartida();
+        }
     }
 
     public void turnoMaquina(View v){
@@ -258,42 +319,56 @@ public class followMeGameScreen extends AppCompatActivity {
         //el siguiente monstruo imprime una a una las notas de la maquina en intervalos de 1 segundo
         if(contadorM >= 0){
             textS0.setText(notasM[0]);
+            repNota(notasM[0]);
+            brilloTecla(Arrays.asList(notas).indexOf(notasM[0]));
             if(contadorM >= 1){
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         textS1.setText(notasM[1]);
+                        repNota(notasM[1]);
+                        brilloTecla(Arrays.asList(notas).indexOf(notasM[1]));
                         if(contadorM >= 2){
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     textS2.setText(notasM[2]);
+                                    repNota(notasM[2]);
+                                    brilloTecla(Arrays.asList(notas).indexOf(notasM[2]));
                                     if(contadorM >= 3){
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
                                                 textS3.setText(notasM[3]);
+                                                repNota(notasM[3]);
+                                                brilloTecla(Arrays.asList(notas).indexOf(notasM[3]));
                                                 if(contadorM >= 4){
                                                     Handler handler = new Handler();
                                                     handler.postDelayed(new Runnable() {
                                                         @Override
                                                         public void run() {
                                                             textS4.setText(notasM[4]);
+                                                            repNota(notasM[4]);
+                                                            brilloTecla(Arrays.asList(notas).indexOf(notasM[4]));
                                                             if(contadorM >= 5){
                                                                 Handler handler = new Handler();
                                                                 handler.postDelayed(new Runnable() {
                                                                     @Override
                                                                     public void run() {
                                                                         textS5.setText(notasM[5]);
+                                                                        repNota(notasM[5]);
+                                                                        brilloTecla(Arrays.asList(notas).indexOf(notasM[5]));
                                                                         if(contadorM >= 6){
                                                                             Handler handler = new Handler();
                                                                             handler.postDelayed(new Runnable() {
                                                                                 @Override
                                                                                 public void run() {
                                                                                     textS6.setText(notasM[6]);
+                                                                                    repNota(notasM[6]);
+                                                                                    brilloTecla(Arrays.asList(notas).indexOf(notasM[6]));
                                                                                 }
                                                                             }, 1000);
                                                                         }
@@ -330,6 +405,10 @@ public class followMeGameScreen extends AppCompatActivity {
         b1.setVisibility(View.VISIBLE);
         b2.setVisibility(View.VISIBLE);
         b3.setVisibility(View.VISIBLE);
+        textB0.setVisibility(View.VISIBLE);
+        textB1.setVisibility(View.VISIBLE);
+        textB2.setVisibility(View.VISIBLE);
+        textB3.setVisibility(View.VISIBLE);
         bj.setVisibility(View.INVISIBLE);
         bm.setVisibility(View.INVISIBLE);
         bc.setVisibility(View.VISIBLE);
@@ -345,6 +424,10 @@ public class followMeGameScreen extends AppCompatActivity {
 
     public void comprobar(View v){
 
+        textB0.setVisibility(View.INVISIBLE);
+        textB1.setVisibility(View.INVISIBLE);
+        textB2.setVisibility(View.INVISIBLE);
+        textB3.setVisibility(View.INVISIBLE);
         b0.setVisibility(View.INVISIBLE);
         b1.setVisibility(View.INVISIBLE);
         b2.setVisibility(View.INVISIBLE);
@@ -358,29 +441,42 @@ public class followMeGameScreen extends AppCompatActivity {
         textS4.setText("");
         textS5.setText("");
         textS6.setText("");
+        MediaPlayer doAudio = MediaPlayer.create(this, R.raw.nota_do);
+        MediaPlayer reAudio = MediaPlayer.create(this, R.raw.re);
+        MediaPlayer miAudio = MediaPlayer.create(this, R.raw.mi);
+        MediaPlayer faAudio = MediaPlayer.create(this, R.raw.fa);
+        MediaPlayer solAudio = MediaPlayer.create(this, R.raw.sol);
+        MediaPlayer laAudio = MediaPlayer.create(this, R.raw.la);
+        MediaPlayer siAudio = MediaPlayer.create(this, R.raw.si);
 
         //COMPROBADOR comprueba una a una las notas del jugador con las de la maquina para revisar si coinciden
         if(contadorM >= 0){
             textS0.setText(notasJ[0]);
-                if(notasM[0]==notasJ[0]){
-                    textS0.setTextColor(getResources().getColor(R.color.Secondary));
-                    // SUMAR PUNTUACION ACA!
-                }else{
-                    textS0.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                    // PIERDE Y SALE A LA PANTALLA FINAL!
-                }
+            repNota(notasM[0]);
+            brilloTecla(Arrays.asList(notas).indexOf(notasM[0]));
+            if(notasM[0]==notasJ[0]){
+                textS0.setTextColor(getResources().getColor(R.color.Secondary));
+                puntuacion += 20;
+                PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
+            }else{
+                textS0.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
+                mostrarResultadoPartida();
+            }
             if(contadorM >= 1){
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         textS1.setText(notasJ[1]);
+                        repNota(notasM[1]);
+                        brilloTecla(Arrays.asList(notas).indexOf(notasM[1]));
                         if(notasM[1]==notasJ[1]){
                             textS1.setTextColor(getResources().getColor(R.color.Secondary));
-                            // SUMAR PUNTUACION ACA!
+                            puntuacion += 20;
+                            PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                         }else{
                             textS1.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                            // PIERDE Y SALE A LA PANTALLA FINAL!
+                            mostrarResultadoPartida();
                         }
                         if(contadorM >= 2){
                             Handler handler = new Handler();
@@ -388,12 +484,15 @@ public class followMeGameScreen extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     textS2.setText(notasJ[2]);
+                                    repNota(notasM[2]);
+                                    brilloTecla(Arrays.asList(notas).indexOf(notasM[2]));
                                     if(notasM[2]==notasJ[2]){
                                         textS2.setTextColor(getResources().getColor(R.color.Secondary));
-                                        // SUMAR PUNTUACION ACA!
+                                        puntuacion += 20;
+                                        PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                                     }else{
                                         textS2.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                                        // PIERDE Y SALE A LA PANTALLA FINAL!
+                                        mostrarResultadoPartida();
                                     }
                                     if(contadorM >= 3){
                                         Handler handler = new Handler();
@@ -401,12 +500,15 @@ public class followMeGameScreen extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 textS3.setText(notasJ[3]);
+                                                repNota(notasM[3]);
+                                                brilloTecla(Arrays.asList(notas).indexOf(notasM[3]));
                                                 if(notasM[3]==notasJ[3]){
                                                     textS3.setTextColor(getResources().getColor(R.color.Secondary));
-                                                    // SUMAR PUNTUACION ACA!
+                                                    puntuacion += 20;
+                                                    PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                                                 }else{
                                                     textS3.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                                                    // PIERDE Y SALE A LA PANTALLA FINAL!
+                                                    mostrarResultadoPartida();
                                                 }
                                                 if(contadorM >= 4){
                                                     Handler handler = new Handler();
@@ -414,12 +516,15 @@ public class followMeGameScreen extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             textS4.setText(notasJ[4]);
+                                                            repNota(notasM[4]);
+                                                            brilloTecla(Arrays.asList(notas).indexOf(notasM[4]));
                                                             if(notasM[4]==notasJ[4]){
                                                                 textS4.setTextColor(getResources().getColor(R.color.Secondary));
-                                                                // SUMAR PUNTUACION ACA!
+                                                                puntuacion += 20;
+                                                                PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                                                             }else{
                                                                 textS4.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                                                                // PIERDE Y SALE A LA PANTALLA FINAL!
+                                                                mostrarResultadoPartida();
                                                             }
                                                             if(contadorM >= 5){
                                                                 Handler handler = new Handler();
@@ -427,12 +532,15 @@ public class followMeGameScreen extends AppCompatActivity {
                                                                     @Override
                                                                     public void run() {
                                                                         textS5.setText(notasJ[5]);
+                                                                        repNota(notasM[5]);
+                                                                        brilloTecla(Arrays.asList(notas).indexOf(notasM[5]));
                                                                         if(notasM[5]==notasJ[5]){
                                                                             textS5.setTextColor(getResources().getColor(R.color.Secondary));
-                                                                            // SUMAR PUNTUACION ACA!
+                                                                            puntuacion += 20;
+                                                                            PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                                                                         }else{
                                                                             textS5.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                                                                            // PIERDE Y SALE A LA PANTALLA FINAL!
+                                                                            mostrarResultadoPartida();
                                                                         }
                                                                         if(contadorM >= 6){
                                                                             Handler handler = new Handler();
@@ -440,12 +548,15 @@ public class followMeGameScreen extends AppCompatActivity {
                                                                                 @Override
                                                                                 public void run() {
                                                                                     textS6.setText(notasJ[6]);
+                                                                                    repNota(notasM[6]);
+                                                                                    brilloTecla(Arrays.asList(notas).indexOf(notasM[6]));
                                                                                     if(notasM[6]==notasJ[6]){
                                                                                         textS6.setTextColor(getResources().getColor(R.color.Secondary));
-                                                                                        // SUMAR PUNTUACION ACA!
+                                                                                        puntuacion += 20;
+                                                                                        PuntuacionFollowMe.setText("Puntuación: "+ puntuacion);
                                                                                     }else{
                                                                                         textS6.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_error));
-                                                                                        // PIERDE Y SALE A LA PANTALLA FINAL!
+                                                                                        mostrarResultadoPartida();
                                                                                     }
                                                                                 }
                                                                             }, 1000);
@@ -474,8 +585,85 @@ public class followMeGameScreen extends AppCompatActivity {
                 bm.setVisibility(View.VISIBLE);
             }
         }, ((contadorM+1)*1000));
+    }
 
+    public void brilloTecla(int t){
+        if(t == 0){
+            t0.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    t0.setVisibility(View.INVISIBLE);
+                }
+            }, 500);
+        }
 
+        if(t == 1){
+            t1.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    t1.setVisibility(View.INVISIBLE);
+                }
+            }, 500);
+        }
+
+        if(t == 2){
+            t2.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    t2.setVisibility(View.INVISIBLE);
+                }
+            }, 500);
+        }
+
+        if(t == 3){
+            t3.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    t3.setVisibility(View.INVISIBLE);
+                }
+            }, 500);
+        }
+    }
+
+    public void repNota(String n){
+        MediaPlayer doAudio = MediaPlayer.create(this, R.raw.nota_do);
+        MediaPlayer reAudio = MediaPlayer.create(this, R.raw.re);
+        MediaPlayer miAudio = MediaPlayer.create(this, R.raw.mi);
+        MediaPlayer faAudio = MediaPlayer.create(this, R.raw.fa);
+        MediaPlayer solAudio = MediaPlayer.create(this, R.raw.sol);
+        MediaPlayer laAudio = MediaPlayer.create(this, R.raw.la);
+        MediaPlayer siAudio = MediaPlayer.create(this, R.raw.si);
+
+        //sonido de las teclas
+        if(n == "do"){
+            doAudio.start();
+        }
+        if(n == "re"){
+            reAudio.start();
+        }
+        if(n == "mi"){
+            miAudio.start();
+        }
+        if(n == "fa"){
+            faAudio.start();
+        }
+        if(n == "sol"){
+            solAudio.start();
+        }
+        if(n == "la"){
+            laAudio.start();
+        }
+        if(n == "si"){
+            siAudio.start();
+        }
     }
 
 
@@ -512,73 +700,73 @@ public class followMeGameScreen extends AppCompatActivity {
                 String timeJuego = String.format("%02d", segundos);
 
                 time.setText("Tiempo restante: "+timeJuego);
-/*                bloquearP();
-                bloquearA();*/
+    /*                bloquearP();
+                    bloquearA();*/
             }
             @Override
             public void onFinish() {
                 time.setText("");
-/*                mostrarFondo();
-                esconderP();
-                bloquearP();
-                mostrarA();
-                desbloquearA();*/
+    /*                mostrarFondo();
+                    esconderP();
+                    bloquearP();
+                    mostrarA();
+                    desbloquearA();*/
             }
         }.start();
     }
 
 
-    /**Funcion para regresar al menu del juego picture**/
-    public void RegresoPicture(View view) {
-        Intent picture = new Intent (this, Picture.class);
-        startActivity(picture);
+    /**Funcion para regresar al menu del juego followMe**/
+    public void RegresoFollowMe(View view) {
+        Intent followMe = new Intent (this, followMe.class);
+        startActivity(followMe);
     }
 
     /**Funcion para mostrar resultado al final de la partida**/
     public void mostrarResultadoPartida(){
         establecerPuntuaciones();
-        AlertDialog.Builder resultado = new AlertDialog.Builder(followMeGameScreen.this);
+        AlertDialog.Builder resultado = new AlertDialog.Builder(com.example.remind_app.followMeGameScreen.this);
         resultado.setMessage(establecerMensaje(puntuacion,puntuacionMaxima))
                 .setCancelable(false)
                 .setPositiveButton("Volver al inicio", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        Intent picture = new Intent(followMeGameScreen.this, Picture.class);
-                        startActivity(picture);
+                        Intent followMe = new Intent(com.example.remind_app.followMeGameScreen.this, followMe.class);
+                        startActivity(followMe);
                     }
                 });
         AlertDialog titulo = resultado.create();
-        titulo.setTitle("PICTURE");
+        titulo.setTitle("FollowMe");
         titulo.show();
     }
 
     public void establecerPuntuaciones(){
         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("FollowMe").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Map<String, Object> Puntuaciones = new HashMap<>();
-                    if(puntuacion>puntuacionMaxima){
-                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
-                    }else{
-                        Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
-                    }
-                    Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
-                    db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("FollowMe").set(Puntuaciones);
-                }
-            }
+                                                                                                                                                     @Override
+                                                                                                                                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                                                                                         Map<String, Object> Puntuaciones = new HashMap<>();
+                                                                                                                                                         if(puntuacion>puntuacionMaxima){
+                                                                                                                                                             Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacion));
+                                                                                                                                                         }else{
+                                                                                                                                                             Puntuaciones.put("PuntuacionMaxima", Integer.toString(puntuacionMaxima));
+                                                                                                                                                         }
+                                                                                                                                                         Puntuaciones.put("UltimaPuntuacion", Integer.toString(puntuacion));
+                                                                                                                                                         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("FollowMe").set(Puntuaciones);
+                                                                                                                                                     }
+                                                                                                                                                 }
         );
     }
 
     public void establecerPuntuacionMaxima(){
         db.collection("Usuario").document(mAuth.getCurrentUser().getEmail()).collection("Juego").document("FollowMe").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.exists()){
-                        String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
-                        puntuacionMaxima = Integer.parseInt(MaxPuntuacion);
-                    }
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    String MaxPuntuacion = documentSnapshot.getString("PuntuacionMaxima");
+                    puntuacionMaxima = Integer.parseInt(MaxPuntuacion);
                 }
+            }
         });
     }
 
@@ -602,7 +790,7 @@ public class followMeGameScreen extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        AlertDialog.Builder instrucciones = new AlertDialog.Builder(followMeGameScreen.this);
+        AlertDialog.Builder instrucciones = new AlertDialog.Builder(com.example.remind_app.followMeGameScreen.this);
         instrucciones.setMessage(instruccionesLeidas)
                 .setCancelable(false)
                 .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
@@ -619,7 +807,7 @@ public class followMeGameScreen extends AppCompatActivity {
     /** Traer las instrucciones de juego desde txt **/
     public String leerInstrucciones()throws IOException{
         String sInstrucciones = "";
-        int id = getResources().getIdentifier("instruccionesFollowMe","raw",getPackageName());
+        int id = getResources().getIdentifier("instruccionesfollowme","raw",getPackageName());
         InputStream is = this.getResources().openRawResource(id);
         Scanner txtInstrucciones = new Scanner(new InputStreamReader(is));
 
@@ -629,4 +817,5 @@ public class followMeGameScreen extends AppCompatActivity {
         is.close();
         return sInstrucciones;
     }
+
 }

@@ -1,0 +1,5 @@
+El objetivo del juego es memorizar las notas que reproduce el robot y replicarlas.
+
+Para iniciar el turno del robot debes pulsar el botón que inicia su turno (botón con el icono de un robot), una vez finalice y hayas memorizado las notas debes pulsar el botón que inicia tu turno (personita con bandera), cuando hayas colocado las notas que crees correctas debes pulsar el botón verificar, una vez finalizada la verificación aparecerá nuevamente el boton del turno del robot para iniciar una nueva ronda con una nota extra.
+
+La partida terminará cuando se llegue a 7 notas.
